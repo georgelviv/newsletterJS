@@ -1,0 +1,19 @@
+{
+  "name": "newslettersjs",
+  "version": "0.0.1",
+  "description": "Grab all interesting articles in one place",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://lvivgeorge@bitbucket.org/lvivgeorge/newslettersjs.git"
+  },
+  "keywords": [
+    "js"
+  ],
+  "author": "Yura Shkoropad",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/lvivgeorge/newslettersjs#readme",
+  "dependencies": {
+    "express": "^4.13.0"
+  }
+}
