@@ -1,14 +1,14 @@
 var express = require('express');
 var path = require('path');
-var configuration = require('./configuration.json');
+var config = require('./configuration.json');
 
 var app = express();
-var port = process.argv[2] || configuration.port;
+var port = process.argv[2] || config.port;
 
-app.use(express.static(configuration.buildDir + '/'));
+app.use(express.static(config.buildDir + '/'));
 
 app.get('/', function (req, res) {
-	res.send('work');
+	res.sendFile(config.buildDir + '/' + config.startIndex);
 });
 
 var server = app.listen(port, function listenPort() {

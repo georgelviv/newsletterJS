@@ -15,5 +15,9 @@
   "homepage": "https://bitbucket.org/lvivgeorge/newslettersjs#readme",
   "dependencies": {
     "express": "^4.13.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-util": "^3.0.6"
   }
 }
