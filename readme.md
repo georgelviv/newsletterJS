@@ -9,3 +9,4 @@ Last updates:
 * added static server
 * added index.html
 * added gulp-tasks
+* added req and cheerio
