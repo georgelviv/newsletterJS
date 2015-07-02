@@ -1,12 +1,10 @@
 #  newslettersJs
 
-Grab all intereting articles in one place
+Grab all intereting articles in one place.
 
-ver: 0.0.1 - In progress
+ver: 0.0.3 - In progress
 
 Last updates:
 
-* added static server
-* added index.html
-* added gulp-tasks
-* added req and cheerio
+* Added class to articles 
+* Added handler to ready state atricles

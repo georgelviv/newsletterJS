@@ -1,8 +1,6 @@
 var express = require('express');
-
-var getArticles = require('./back/get-articles');
+var articles = require('./back/articles-instance');
 var config = require('./configuration.json');
-
 
 var app = express();
 var port = process.argv[2] || config.port;
@@ -14,12 +12,10 @@ app.get('/', function (req, res) {
 });
 
 app.get('/last', function (req, res) {
-	getArticles(function (data) {
+	articles.getData(function (data) {
 		res.send(data);
 	});
 });
-
-
 
 var server = app.listen(port, function listenPort() {
 	console.log('Listen on port:' + server.address().port);
