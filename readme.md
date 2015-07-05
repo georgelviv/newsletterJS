@@ -2,18 +2,16 @@
 
 Grab all intereting articles in one place.
 
-ver: 0.0.5 - In progress
+Current ver: ** 0.0.5** Status: *In progress*
 
-Last updates:
-
-Next version:
+Last updates (while be added in next version):
 
 * Added date to data
 * Articles sorted by date
 * Added Alistapart (partial, only first page)
 * Implement rest api for last
 
-In 0.0.5
+Updates In 0.0.5
 
 * Added description
 * Fixed encoding buffer bug
@@ -30,4 +28,3 @@ Ideas for todo:
 * send email with local tunnel
 * Add date of publishing
 * Add new origin and sort by data
-
