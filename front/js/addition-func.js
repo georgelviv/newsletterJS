@@ -5,6 +5,8 @@
 	window.$_$.getRequest = getRequest;
 	window.$_$.request = request;
 	window.$_$.isFunction = isFunction;
+	window.$_$.escapeHtml = escapeHtml;
+	window.$_$.paragraphWrapper = paragraphWrapper;
 
 	function getRequest(url, cb) {
 		request(url, 'GET', cb);
@@ -26,6 +28,26 @@
 
 	function isFunction(functionToCheck) {
 		return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+	}
+
+	function escapeHtml (string) {
+		var entityMap = {
+			'&': '&amp;',
+			'<': '&lt;',
+			'>': '&gt;',
+			'"': '&quot;',
+			'\'': '&#39;',
+			'/': '&#x2F;'
+		};
+		return String(string).replace(/[&<>"'\/]/g, function (s) {
+			return entityMap[s];
+	    });
+	}
+
+	function paragraphWrapper(string) {
+		return string.replace(/.+\n(?=.*)/g, function (s) {
+			return '</p><p class="article__paragraph">' + s ;
+		});
 	}
 
 })();

@@ -46,8 +46,18 @@ function Articles() {
 		privateObj.ee.on('data is ready ' + index, markReady);
 
 		function markReady () {
+			var siteData = site.getData();
+			if (Array.isArray(siteData)) {
+				siteData = siteData.reverse();
+				siteData.forEach(function (value) {
+					value.index = privateObj.resData.length + 1;
+					privateObj.resData.push(value);
+				});
+				privateObj.resData = privateObj.resData.reverse();
+			} else {
+				privateObj.resData.push(siteData);
+			}
 			privateObj.sitesArray[index].isReady = true;
-			privateObj.resData.push(site.getData());
 			privateObj.ee.emit('Data ready');
 
 			if (privateObj.sitesArray.every(checkIsReady)) {
@@ -75,7 +85,7 @@ function SiteArticles (obj) {
 			}
 		},
 		originObj: {
-			data: '',
+			data: new Buffer(''),
 			response: {}
 		},
 		innerEE: new EventEmitter(),
@@ -100,12 +110,13 @@ function SiteArticles (obj) {
 			console.log('Error: ' + error);
 		})
 		.on('data', function (chunk) {
-			privateObj.originObj.data += chunk;
+			privateObj.originObj.data = Buffer.concat([new Buffer(privateObj.originObj.data) , new Buffer(chunk)]);
 		})
 		.on('response', function (responseObj) {
 			privateObj.originObj.response = responseObj;
 		})
 		.on('end', function () {
+			privateObj.originObj.data = privateObj.originObj.data.toString('utf-8');
 			privateObj.innerEE.emit('dataLoaded');
 		});
 	}
@@ -119,6 +130,7 @@ function SiteArticles (obj) {
 			console.log('Error, no current data loaded');
 			return;
 		}
+
 		privateObj.transformDataObject = privateObj.transformFunc(privateObj.originObj.data);
 		privateObj.innerEE.emit('dataTransformed');
 	}
@@ -126,4 +138,6 @@ function SiteArticles (obj) {
 	function getData () {
 		return privateObj.transformDataObject;
 	}
+
+
 }
