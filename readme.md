@@ -4,7 +4,7 @@ Grab all intereting articles in one place.
 
 Current ver: ** 0.0.8** Status: *In progress*
 
-Updates In 0.0.8
+Updates In **0.0.8**
 
 * prepare data
 * Sorted by date
@@ -14,7 +14,7 @@ Updates In 0.0.8
 * Implement rest api for last
 * fixed some bugs
 
-Updates In 0.0.5
+Updates In **0.0.5**
 
 * Added description
 * Fixed encoding buffer bug
