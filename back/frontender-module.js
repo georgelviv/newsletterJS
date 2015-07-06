@@ -14,14 +14,11 @@ function frontenderTrasnform(data) {
 	$('.articles article').each(function () {
 
 		var article = $(this);
-		var title = clearNewLine(article.find('h2').text());
-		var description = '';
+		var title = article.find('h2').text();
+		var description = article.find('p').text();
 		var link = site + article.find('h2 a').attr('href');
 		var date = article.find('footer time').attr('datetime');
 
-		article.find('p').each(function () {
-			description += clearNewLine($(this).text()) + '\n';
-		});
 		resArr.push({
 			origin: site + '/',
 			title: title,
@@ -30,9 +27,6 @@ function frontenderTrasnform(data) {
 			date: date
 		});
 	});
-	return resArr;
 
-	function clearNewLine(string) {
-		return string.replace(/\n/g, '');
-	}
+	return resArr;
 }

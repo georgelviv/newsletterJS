@@ -22,7 +22,7 @@ function SitePage (obj) {
 
 	function requestData (configObj) {
 		var originData = new Buffer('');
-		var resultData;
+		var resultData = {};
 		var response;
 		request.get(configObj)
 		.on('error', function (error) {
@@ -35,7 +35,8 @@ function SitePage (obj) {
 			response = responseObj;
 		})
 		.on('end', function () {
-			resultData = obj.transformFunc(originData.toString('utf-8'));
+			resultData.originPage = originData.toString('utf-8');
+			resultData.dataArray = obj.transformFunc(resultData.originPage);
 			obj.cb(resultData);
 		});
 	}

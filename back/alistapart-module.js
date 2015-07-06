@@ -20,8 +20,8 @@ function alistapartTrasnform(data) {
 	$('article.main-content .entry-list').each(function () {
 		$(this).find('li').each(function () {
 			var article = $(this);
-			var title = clearNewLine(article.find('h3.entry-title').text());
-			var description = clearNewLine(article.find('p').not('.meta').text());
+			var title = article.find('h3.entry-title').text();
+			var description = article.find('p').not('.meta').text();
 			var link = site + article.find('h3.entry-title a').attr('href');
 			var date = article.find('time.pubdate').attr('datetime').split('T')[0];
 
@@ -36,8 +36,4 @@ function alistapartTrasnform(data) {
 	});
 
 	return resArr;
-
-	function clearNewLine(string) {
-		return string.replace(/\n/g, '');
-	}
 }

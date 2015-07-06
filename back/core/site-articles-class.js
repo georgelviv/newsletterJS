@@ -1,5 +1,6 @@
 var EventEmitter = require('events').EventEmitter;
 var requestData = require('./request-data');
+var articlePrepare = require('./article-prepare');
 
 module.exports = SiteArticles;
 
@@ -10,7 +11,10 @@ function SiteArticles (configObj) {
 		return;
 	}
 	var privateObj = {
-		innerEE: new EventEmitter()
+		innerEE: new EventEmitter(),
+		PAGE_LIMIT: 5,
+		currentPage: 0,
+		dataArray: []
 	};
 	
 	this.init = init;
@@ -27,11 +31,25 @@ function SiteArticles (configObj) {
 	}
 
 	function dataIsReady (data) {
-		privateObj.dataArray = data;
-		if (false && isFunction(configObj.pages)) {
-			var link = configObj.pages(originObj.data);
+		data.dataArray.forEach(function (value) {
+			privateObj.dataArray.push(articlePrepare(value));
+		})
+		
+		privateObj.currentPage++;
+		if (isFunction(configObj.pages) && privateObj.currentPage < privateObj.PAGE_LIMIT) {
+			nextPage(data.originPage);
+		} else {
+			privateObj.publicEE.emit(privateObj.publicEEmsg);
 		}
-		privateObj.publicEE.emit(privateObj.publicEEmsg);
+	}
+
+	function nextPage(data) {
+		var link = configObj.pages(data);
+		requestData({
+			url: link,
+			transformFunc: configObj.transformFunc,
+			cb: dataIsReady
+		});	
 	}
 
 	function getData () {

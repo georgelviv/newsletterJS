@@ -5,7 +5,7 @@
 	var statusValueDom = document.getElementsByClassName('status__value')[0];
 	statusValueDom.innerHTML = 'loading';
 
-	$_$.getRequest('/articles/1-10', lastCb);
+	$_$.getRequest('/articles/', lastCb);
 
 	function lastCb(data) {
 		var contentDom = document.getElementsByClassName('main__content')[0];

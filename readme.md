@@ -2,14 +2,17 @@
 
 Grab all intereting articles in one place.
 
-Current ver: ** 0.0.5** Status: *In progress*
+Current ver: ** 0.0.8** Status: *In progress*
 
-Last updates (while be added in next version):
+Updates In 0.0.8
 
-* Added date to data
+* prepare data
+* Sorted by date
+* Added date of publishing
 * Articles sorted by date
 * Added Alistapart (partial, only first page)
 * Implement rest api for last
+* fixed some bugs
 
 Updates In 0.0.5
 
@@ -18,7 +21,6 @@ Updates In 0.0.5
 * Added link to data
 * Added index to data
 
-
 Ideas for todo:
 
 * save data to Firebase
@@ -26,5 +28,3 @@ Ideas for todo:
 * article read
 * local tunnel
 * send email with local tunnel
-* Add date of publishing
-* Add new origin and sort by data
