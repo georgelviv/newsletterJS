@@ -1,4 +1,4 @@
-(function additionFunc () {
+(function utility () {
 
 	window.$_$ = window.$_$ || {};
 

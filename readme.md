@@ -4,6 +4,10 @@ Grab all intereting articles in one place.
 
 Current ver: ** 0.0.8** Status: *In progress*
 
+Next version updates
+
+* fixed index (first article get index: 1)
+
 Updates In **0.0.8**
 
 * prepare data
@@ -14,13 +18,6 @@ Updates In **0.0.8**
 * Implement rest api for last
 * fixed some bugs
 
-Updates In **0.0.5**
-
-* Added description
-* Fixed encoding buffer bug
-* Added link to data
-* Added index to data
-
 Ideas for todo:
 
 * save data to Firebase
@@ -28,3 +25,4 @@ Ideas for todo:
 * article read
 * local tunnel
 * send email with local tunnel
+* add page navigation

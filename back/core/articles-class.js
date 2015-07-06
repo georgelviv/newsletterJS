@@ -72,7 +72,7 @@ function Articles() {
 
 			privateObj.resData = sortByDate(privateObj.resData);
 			privateObj.resData.forEach(function (v, i) {
-				v.index = i + 1;
+				v.index = privateObj.resData.length - i;
 			});
 
 			privateObj.sitesArray[index].isReady = true;
