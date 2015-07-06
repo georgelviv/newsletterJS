@@ -6,6 +6,13 @@ ver: 0.0.5 - In progress
 
 Last updates:
 
+Next version:
+
+* Added date to data
+* Articles sorted by date
+* Added Alistapart (partial, only first page)
+* Implement rest api for last
+
 In 0.0.5
 
 * Added description
@@ -13,18 +20,14 @@ In 0.0.5
 * Added link to data
 * Added index to data
 
-In 0.0.3
-
-* Added class to articles 
-* Added handler to ready state atricles
-
 
 Ideas for todo:
 
-* Implement rest api for last. Example: /last - gives all, /last:5 - give 5 item, /last:1-5 give 5 items 
 * save data to Firebase
 * Send grid send marked items
 * article read
 * local tunnel
 * send email with local tunnel
+* Add date of publishing
+* Add new origin and sort by data
 

@@ -1,5 +1,5 @@
 var EventEmitter = require('events').EventEmitter;
-var request = require('request');
+var SiteArticles = require('./site-articles-class');
 
 module.exports = Articles;
 
@@ -25,13 +25,28 @@ function Articles() {
 		});
 	}
 
-	function getData (cb) {
+	function getData (cb, range) {
 		if (privateObj.isDataReady) {
-			cb(JSON.stringify(privateObj.resData));
+			callbackData();
 		} else {
 			privateObj.ee.on('Data ready', function () {
-				cb(JSON.stringify(privateObj.resData));
+				callbackData();
 			});
+		}
+
+		function callbackData() {
+			var sendData = privateObj.resData;
+			if (range) {
+				var rangeParams = range.split('-');
+				var firstParam = Number(rangeParams[0]);
+				var secondParam = Number(rangeParams[1]);
+				if (Number.isInteger(firstParam) && Number.isInteger(secondParam)) {
+					sendData = sendData.slice(firstParam - 1, secondParam);
+				} else if (Number.isInteger(Number(firstParam))) {
+					sendData = sendData.slice(firstParam - 1, firstParam);
+				}
+			}
+			cb(JSON.stringify(sendData));
 		}
 	}
 
@@ -48,15 +63,18 @@ function Articles() {
 		function markReady () {
 			var siteData = site.getData();
 			if (Array.isArray(siteData)) {
-				siteData = siteData.reverse();
 				siteData.forEach(function (value) {
-					value.index = privateObj.resData.length + 1;
 					privateObj.resData.push(value);
 				});
-				privateObj.resData = privateObj.resData.reverse();
 			} else {
 				privateObj.resData.push(siteData);
 			}
+
+			privateObj.resData = sortByDate(privateObj.resData);
+			privateObj.resData.forEach(function (v, i) {
+				v.index = i + 1;
+			});
+
 			privateObj.sitesArray[index].isReady = true;
 			privateObj.ee.emit('Data ready');
 
@@ -69,75 +87,25 @@ function Articles() {
 			}
 		}
 	}
-}
 
-function SiteArticles (obj) {
-	var configObj = obj || {};
-	var privateObj = {
-		transformFunc: configObj.transformFunc || function (data) { return data; },
-		configObj: {
-			url: configObj.url || 'http://frontender.info/',
-			method: 'GET',
-			gzip: true,
-			headers: {
-				'User-Agent' : 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 ' +
-				'(KHTML, like Gecko) Chrome/43.0.2357.130 Safari/537.36'
-			}
-		},
-		originObj: {
-			data: new Buffer(''),
-			response: {}
-		},
-		innerEE: new EventEmitter(),
-		url: configObj.url || 'http://frontender.info/'
-	}
-
-	this.init = init;
-	this.getData = getData;
-
-	privateObj.innerEE.on('dataLoaded', transformData);
-	privateObj.innerEE.on('dataTransformed', emitReady);
-
-	function init (obj) {
-		privateObj.publicEE = obj.ee;
-		privateObj.publicEEmsg = 'data is ready ' + obj.index;
-		requestData();
-	}
-	
-	function requestData () {
-		request.get(privateObj.configObj)
-		.on('error', function (error) {
-			console.log('Error: ' + error);
-		})
-		.on('data', function (chunk) {
-			privateObj.originObj.data = Buffer.concat([new Buffer(privateObj.originObj.data) , new Buffer(chunk)]);
-		})
-		.on('response', function (responseObj) {
-			privateObj.originObj.response = responseObj;
-		})
-		.on('end', function () {
-			privateObj.originObj.data = privateObj.originObj.data.toString('utf-8');
-			privateObj.innerEE.emit('dataLoaded');
+	function sortByDate(dataArray) {
+		return dataArray.sort(function (a, b) {
+			return compareDate(a.date, b.date);	
 		});
-	}
 
-	function emitReady () {
-		privateObj.publicEE.emit(privateObj.publicEEmsg);
-	}
-
-	function transformData () {
-		if (!privateObj.originObj.data) {
-			console.log('Error, no current data loaded');
-			return;
+		function compareDate(date1, date2) {
+			var date1Array = date1.split('-');
+			var date2Array = date2.split('-');
+			for (var i = 0; i < date1Array.length; i++) {
+				if (Number(date1Array[i]) > Number(date2Array[i])) {
+					return -1;
+				} else if (Number(date1Array[i]) < Number(date2Array[i])) {
+					return 1;
+				}
+			}
+			return 0;
 		}
-
-		privateObj.transformDataObject = privateObj.transformFunc(privateObj.originObj.data);
-		privateObj.innerEE.emit('dataTransformed');
 	}
-
-	function getData () {
-		return privateObj.transformDataObject;
-	}
-
-
 }
+
+

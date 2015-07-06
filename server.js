@@ -17,6 +17,12 @@ app.get('/last', function (req, res) {
 	});
 });
 
+app.get('/last/:articleId', function (req, res) {
+	articles.getData(function (data) {
+		res.send(data);
+	}, req.params.articleId);
+});
+
 var server = app.listen(port, function listenPort() {
 	console.log('Listen on port:' + server.address().port);
 });
