@@ -3,10 +3,16 @@ var site = 'http://alistapart.com';
 
 var alistapartObj = {
 	url: site + '/articles',
-	transformFunc: alistapartTrasnform
+	transformFunc: alistapartTrasnform,
+	pages: linkToNextPage
 };
 
 module.exports = alistapartObj;
+
+function linkToNextPage(data) {
+	var $ = cheerio.load(data);
+	return $('article.main-content .paginator .previous').attr('href');
+}
 
 function alistapartTrasnform(data) {
 	var $ = cheerio.load(data);

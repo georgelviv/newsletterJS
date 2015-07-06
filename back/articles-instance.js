@@ -1,4 +1,4 @@
-var Articles = require('./articles-class');
+var Articles = require('./core/articles-class');
 
 var articles = new Articles();
 

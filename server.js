@@ -11,13 +11,13 @@ app.get('/', function (req, res) {
 	res.sendFile(config.buildDir + '/' + config.startIndex);
 });
 
-app.get('/last', function (req, res) {
+app.get('/articles', function (req, res) {
 	articles.getData(function (data) {
 		res.send(data);
 	});
 });
 
-app.get('/last/:articleId', function (req, res) {
+app.get('/articles/:articleId', function (req, res) {
 	articles.getData(function (data) {
 		res.send(data);
 	}, req.params.articleId);
