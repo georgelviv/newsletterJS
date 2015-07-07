@@ -7,6 +7,7 @@ Current ver: ** 0.0.8** Status: *In progress*
 Next version updates
 
 * fixed index (first article get index: 1)
+* added main router
 
 Updates In **0.0.8**
 
@@ -20,6 +21,7 @@ Updates In **0.0.8**
 
 Ideas for todo:
 
+* add requests broke
 * save data to Firebase
 * Send grid send marked items
 * article read
