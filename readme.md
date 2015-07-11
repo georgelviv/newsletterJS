@@ -1,26 +1,22 @@
 #  newslettersJs
 
-Grab all intereting articles in one place.
+Grab all intereting articles in one place. Now you can navigate beetwen pages!
+Already exist latest articles from next sites:
+* *http://alistapart.com*
+* *http://frontender.info*
 
-Current ver: ** 0.0.9** Status: *In progress*
+Current ver: ** 0.1.0** Status: *In progress*
 
 Next version updates
 
+Updates In **0.1.0**
+
+* fixed navigation bugs
+* Added data-add-attr
 * Added navigation
 * added add attr atribute render
 * added executed controller
 * Fixed wrong articles order
-
-
-Updates In **0.0.9**
-
-* Added update view method in route provider
-* Added data render
-* Added route
-* Added sourcemaps to js, and runsequence
-* fixed index (first article get index: 1)
-* added main router
-* added template provider and tpl tasks
 
 Ideas for todo:
 

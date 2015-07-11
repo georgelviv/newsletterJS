@@ -1,10 +1,10 @@
 <div class="main__navigation">
-	<a class="main__navigation__prev" data-add-attr="href, prevPageLink" data-add-class-if-not="prevpage" 
-		title="Go to previously page">
+	<a class="main__navigation__button main__navigation__button--prev" data-add-attr="href, prevPageLink" 
+		data-add-class-if-not="prevPage, main__navigation__button--disable" title="Go to previously page">
 		Prev
 	</a>
-	<a class="main__navigation__next" data-add-attr="href, nextPageLink" data-add-class-if-not="nextpage" 
-		title="Go to next page">
+	<a class="main__navigation__button main__navigation__button--next" data-add-attr="href, nextPageLink" 
+		data-add-class-if-not="nextPage, main__navigation__button--disable" title="Go to next page">
 		Next
 	</a>
 </div>
@@ -20,12 +20,12 @@
 	</article>
 </div>
 <div class="main__navigation">
-	<a class="main__navigation__prev" data-add-attr="href, prevPageLink" data-add-class-if-not="prevpage" 
-		title="Go to previously page">
+	<a class="main__navigation__button main__navigation__button--prev" data-add-attr="href, prevPageLink" 
+		data-add-class-if-not="prevPage, main__navigation__button--disable" title="Go to previously page">
 		Prev
 	</a>
-	<a class="main__navigation__next" data-add-attr="href, nextPageLink" data-add-class-if-not="nextpage" 
-		title="Go to next page">
+	<a class="main__navigation__button main__navigation__button--next" data-add-attr="href, nextPageLink" 
+		data-add-class-if-not="nextPage, main__navigation__button--disable" title="Go to next page">
 		Next
 	</a>
 </div>

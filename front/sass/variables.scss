@@ -1,2 +1,12 @@
 $midnight-blue-color: #2c3e50;
 $clouds-color: #ecf0f1;
+
+// Mixins
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+}

@@ -5,7 +5,7 @@ var concatCss = require('gulp-concat-css');
 var livereload = require('gulp-livereload');
 
 var config = require('../configuration.json');
-var srcFiles = config.frontDir + '/sass/**/*.scss';
+var srcFiles = config.frontDir + '/sass/basic.scss';
 
 module.exports = cssTask;
 module.exports.srcFiles = srcFiles;

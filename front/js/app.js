@@ -28,7 +28,12 @@
 		utils.getRequest('/articles/' + (range * page + 1 - range) + '-' + (range * page), lastCb);
 		
 		function lastCb(data) {
-			var articlesArray = formatData(JSON.parse(data));
+			var dataParse = JSON.parse(data);
+			if (!dataParse.length) { 
+				return; 
+			}
+
+			var articlesArray = formatData(dataParse);
 
 			setPagesConfigs();
 			articleRoute.setConfig('articles', articlesArray);
@@ -41,15 +46,13 @@
 				});
 				return array;
 			}
-		}
-		function setPagesConfigs () {
-			self.setConfig('prevPageLink', '#/articles/' + (page - 1));
-			self.setConfig('nextPageLink', '#/articles/' + (page + 1));
-		}
+			function setPagesConfigs () {
+				self.setConfig('prevPageLink', '#/articles/' + (page - 1));
+				self.setConfig('nextPageLink', '#/articles/' + (page + 1));
+				self.setConfig('prevPage', page > 1);
+				self.setConfig('nextPage', articlesArray[articlesArray.length - 1].index > 1);
+			}
+		}		
 	}
-
-	
-
-
 
 })();
