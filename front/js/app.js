@@ -1,6 +1,7 @@
 (function app() {
 
 	var $_$ = window.$_$;
+	var utils = $_$.utils;
 	var viewDom = document.getElementsByClassName('main__view')[0];
 
 	var routeProvider = new $_$.Router({
@@ -8,36 +9,27 @@
 		defaultUrl: 'articles',
 		titleSufix: 'newsletterJS'
 	});
-	routeProvider.route({
+
+	var articleRoute = routeProvider.route({
 		url: 'articles',
 		state: 'Last Articles',
 		templateUrl: 'articles.tpl'
 	});
 
-	function articlesCtrl() {
-		$_$.getRequest('/articles/1-25', lastCb);
+	utils.getRequest('/articles/1-25', lastCb);
 
-		return '<div class="main__content"></div>';
+	function lastCb(data) {
+		var array = formatData(JSON.parse(data));
 
-		function lastCb(data) {
-			var contentDom = document.getElementsByClassName('main__content')[0];
-			contentDom.innerHTML = formatDomString(JSON.parse(data));
-		}
+		articleRoute.setConfig('data', array);
+		routeProvider.updateView();
 
-		function formatDomString(obj) {
-			var resString = '';
-			obj.forEach(function (value) {
-				resString += '<article class="main__article">';
-				resString += '<h2>' + $_$.escapeHtml(value.title) + '</h2>';
-				resString += '<p class="article__paragraph">' + $_$.paragraphWrapper($_$.escapeHtml(value.description)) + '</p>';
-				resString += '<footer class="article__footer">';
-				resString += '<time class="article__footer__datetime" datetime="' + value.date + '">' + value.date + '</time>';
-				resString += '<span class="article__footer__index">' + value.index + '</span>';
-				resString += '</footer>';
-				resString += '</article>';
+		function formatData(array) {
+			array.forEach(function (value) {
+				value.title = utils.escapeHtml(value.title);
+				value.description = utils.paragraphWrapper(utils.escapeHtml(value.description));
 			});
-			return resString;
-			
+			return array;
 		}
 	}
 

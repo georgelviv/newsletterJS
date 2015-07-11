@@ -2,23 +2,20 @@
 
 Grab all intereting articles in one place.
 
-Current ver: ** 0.0.8** Status: *In progress*
+Current ver: ** 0.0.9** Status: *In progress*
 
 Next version updates
 
+
+Updates In **0.0.9**
+
+* Added update view method in route provider
+* Added data render
+* Added route
+* Added sourcemaps to js, and runsequence
 * fixed index (first article get index: 1)
 * added main router
 * added template provider and tpl tasks
-
-Updates In **0.0.8**
-
-* prepare data
-* Sorted by date
-* Added date of publishing
-* Articles sorted by date
-* Added Alistapart (partial, only first page)
-* Implement rest api for last
-* fixed some bugs
 
 Ideas for todo:
 
