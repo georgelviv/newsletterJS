@@ -6,6 +6,11 @@ Current ver: ** 0.0.9** Status: *In progress*
 
 Next version updates
 
+* Added navigation
+* added add attr atribute render
+* added executed controller
+* Fixed wrong articles order
+
 
 Updates In **0.0.9**
 

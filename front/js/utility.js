@@ -8,7 +8,8 @@
 		isFunction: isFunction,
 		escapeHtml: escapeHtml,
 		paragraphWrapper: paragraphWrapper,
-		getElemntsByAttribute: getElemntsByAttribute
+		getElemntsByAttribute: getElemntsByAttribute,
+		addPrefixKey: addPrefixKey
 	};
 
 	function getRequest(url, cb) {
@@ -29,7 +30,7 @@
 		return xhr;
 	}
 
-	function isFunction(functionToCheck) {
+	function isFunction (functionToCheck) {
 		return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
 	}
 
@@ -67,6 +68,14 @@
 			}
 			return matchingElements;
 		}
+	}
+
+	function addPrefixKey (obj, prefix) {
+		var newObj = {};
+		for (var key in obj) {
+			newObj[prefix + '' + key] = obj[key];
+		}
+		return newObj;
 	}
 
 })();

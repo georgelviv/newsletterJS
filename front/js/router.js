@@ -11,9 +11,7 @@
 			routes: {},
 			viewDom: configs.viewDom || document.body,
 			defaultView: configs.defaultUrl || '',
-			titleSufix: configs.titleSufix || 'newsletterJS',
-			templatesProvider: new $_$.TemplatesProvider(),
-			currentUrl:  getUrlHash()
+			titleSufix: configs.titleSufix || 'newsletterJS'
 		};
 
 		this.route = route;
@@ -25,6 +23,7 @@
 		function route (configs) {
 			if (configs.url) {
 				routerPrivate.routes[configs.url] = new $_$.Route(configs);
+				routerPrivate.routes[configs.url].setConfig('viewDom', routerPrivate.viewDom);
 				return routerPrivate.routes[configs.url];
 			}
 		}
@@ -33,63 +32,26 @@
 			if (!location.hash) {
 				location.hash = '#/';
 			}
-			if (routerPrivate.routes[routerPrivate.currentUrl]) {
-				routeSwitch(routerPrivate.currentUrl);
+			updateState();
+			if (routerPrivate.routes[routerPrivate.state]) {
+				routeSwitch(routerPrivate.state);
 			} else {
 				location.hash = '#/' + routerPrivate.defaultView;
 				routeSwitch(routerPrivate.defaultView);
-			}
-			updateCurrentUrl();	
+			}	
 		}
 
 		function updateView () {
-			var url = routerPrivate.currentUrl;
-			var data = routerPrivate.routes[url] && routerPrivate.routes[url].getConfig('data');
-			if (data) {
-				dataRepeat(data, routerPrivate.viewDom);
-			}
-			function dataRepeat (data, dom) {
-				var dataRepeatAttr = utils.getElemntsByAttribute('data-repeat', dom);
-				Array.prototype.forEach.call(dataRepeatAttr, function (route) {
-					if (Array.isArray(data)) {
-						data.forEach(function (article) {
-							var newNode = route.cloneNode(true);
-							route.parentNode.insertBefore(newNode, route.nextSibling);
-							dataValue(article, newNode);
-						});
-					}
-				});				
-			}
-
-			function dataValue (data, dom) {
-				var dataValueAttr = utils.getElemntsByAttribute('data-value', dom);
-				Array.prototype.forEach.call(dataValueAttr, function (value) {
-					var dataKey = value.getAttribute('data-value');
-					if (data[dataKey]) {
-						value.innerText = data[dataKey];
-					}
-				});
-			}
+			routerPrivate.routes[routerPrivate.state].renderAttr();
 		}
 
-		function routeSwitch (route) {
-			renderTemplate(route);
-			updateView();
+		function routeSwitch () {
+			routerPrivate.routes[routerPrivate.state].render(routerPrivate.params);
 			changeTitle();
 		}
 
-		function renderTemplate (url) {
-			var routeObj =  routerPrivate.routes[url];
-			if (routeObj) {
-				var template = routerPrivate.templatesProvider.getTemplate(routeObj.getConfig('templateUrl'));
-				if (template) {
-					routerPrivate.viewDom.innerHTML = template;
-				}
-			}
-		}
-
 		function changeTitle () {
-			var urlHash = routerPrivate.currentUrl;
+			var urlHash = routerPrivate.state;
 			var titleDom = document.head.getElementsByTagName('title')[0];
 			var state = routerPrivate.routes[urlHash] && routerPrivate.routes[urlHash].state;
 			if (state) {
@@ -99,13 +61,26 @@
 			}
 		}
 
-		function updateCurrentUrl () {
-			routerPrivate.currentUrl = getUrlHash();
+		function updateState () {
+			var hash = location.hash.substring(2);
+			if (routerPrivate.routes[hash]) {
+				routerPrivate.state = hash;
+				routerPrivate.params = null;
+				return;
+			}
+
+			var hashArray = hash.split('/');
+			var hashWithoutParams = (hashArray.slice(0, -1)).join('/');
+
+			if (routerPrivate.routes[hashWithoutParams]) {
+				routerPrivate.state = hashWithoutParams;
+				routerPrivate.params = hashArray[hashArray.length - 1];
+			} else {
+				routerPrivate.state = hash;
+				routerPrivate.params = null;
+			}
 		}
 
-		function getUrlHash () {
-			return location.hash.substring(2);
-		}
 	}
 
 })();

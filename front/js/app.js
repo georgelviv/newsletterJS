@@ -13,24 +13,43 @@
 	var articleRoute = routeProvider.route({
 		url: 'articles',
 		state: 'Last Articles',
-		templateUrl: 'articles.tpl'
+		templateUrl: 'articles.tpl',
+		controller: articlesController
 	});
 
-	utils.getRequest('/articles/1-25', lastCb);
+	function articlesController (self, params) {
+		var range = 25;
+		var page = 1;
 
-	function lastCb(data) {
-		var array = formatData(JSON.parse(data));
+		if (params) {
+			page = Number(params);
+		}
 
-		articleRoute.setConfig('data', array);
-		routeProvider.updateView();
+		utils.getRequest('/articles/' + (range * page + 1 - range) + '-' + (range * page), lastCb);
+		
+		function lastCb(data) {
+			var articlesArray = formatData(JSON.parse(data));
 
-		function formatData(array) {
-			array.forEach(function (value) {
-				value.title = utils.escapeHtml(value.title);
-				value.description = utils.paragraphWrapper(utils.escapeHtml(value.description));
-			});
-			return array;
+			setPagesConfigs();
+			articleRoute.setConfig('articles', articlesArray);
+			routeProvider.updateView();
+
+			function formatData(array) {
+				array.forEach(function (value) {
+					value.title = utils.escapeHtml(value.title);
+					value.description = utils.paragraphWrapper(utils.escapeHtml(value.description));
+				});
+				return array;
+			}
+		}
+		function setPagesConfigs () {
+			self.setConfig('prevPageLink', '#/articles/' + (page - 1));
+			self.setConfig('nextPageLink', '#/articles/' + (page + 1));
 		}
 	}
+
+	
+
+
 
 })();
