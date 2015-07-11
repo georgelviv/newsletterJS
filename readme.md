@@ -1,7 +1,9 @@
 #  newslettersJs
 
 Grab all intereting articles in one place. Now you can navigate beetwen pages!
+
 Already exist latest articles from next sites:
+
 * *http://alistapart.com*
 * *http://frontender.info*
 
