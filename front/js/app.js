@@ -11,12 +11,13 @@
 	routeProvider.route({
 		url: 'articles',
 		state: 'Last Articles',
-		template: '<div class="main__content"></div>',
-		controller: articlesCtrl
+		templateUrl: 'articles.tpl'
 	});
 
 	function articlesCtrl() {
 		$_$.getRequest('/articles/1-25', lastCb);
+
+		return '<div class="main__content"></div>';
 
 		function lastCb(data) {
 			var contentDom = document.getElementsByClassName('main__content')[0];

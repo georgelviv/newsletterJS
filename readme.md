@@ -8,6 +8,7 @@ Next version updates
 
 * fixed index (first article get index: 1)
 * added main router
+* added template provider and tpl tasks
 
 Updates In **0.0.8**
 

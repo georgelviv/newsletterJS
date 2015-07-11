@@ -1,0 +1,1 @@
+(function () {window.$_$ = window.$_$ || {};window.$_$.TemplatesProvider = TemplatesProvider;function TemplatesProvider() { var templatesObj ={"articles.tpl":"<div class=\"main__content\"></div>"};this.getTemplate = getTemplate; function getTemplate (template) {  return templatesObj[template]; }}})("4343434");

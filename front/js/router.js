@@ -3,13 +3,14 @@
 	window.$_$ = window.$_$ || {};
 	window.$_$.Router = Router;
 
-var $_$ = window.$_$;
+	var $_$ = window.$_$;
 
 	function Router (configs) {
 		var routes = {};
 		var viewDom = configs.viewDom || document.body;
 		var defaultView = configs.defaultUrl || '';
 		var titleSufix = configs.titleSufix || 'newsletterJS';
+		var templatesProvider = new $_$.TemplatesProvider();
 
 		this.route = route;
 
@@ -33,27 +34,23 @@ var $_$ = window.$_$;
 		function route (configs) {
 			routes[configs.url] = {};
 			routes[configs.url].state = configs.state;
-			if (configs.template) {
-				routes[configs.url].template = configs.template;
+			if (configs.templateUrl) {
+				routes[configs.url].templateUrl = configs.templateUrl;
 			}
-			if (configs.controller) {
-				routes[configs.url].controller = configs.controller;
-			}			
 		}
 
 		function routeSwitch (route) {
 			renderTemplate(route);
 			changeTitle();
-			if (routes[route] && $_$.isFunction(routes[route].controller)) {
-				routes[route].controller();
-			}
 		}
 
 		function renderTemplate (url) {
 			if (routes[url]) {
 				var routesObj = routes[url];
-				if (routesObj.template) {
-					viewDom.innerHTML = routesObj.template;
+				if (templatesProvider.getTemplate(routesObj.template)) {
+					if ($_$.isFunction(routesObj.template)) {
+						viewDom.innerHTML = routesObj.template;
+					}
 				}
 			}
 		}

@@ -1,5 +1,5 @@
 (function utility () {
-
+	
 	window.$_$ = window.$_$ || {};
 
 	window.$_$.getRequest = getRequest;

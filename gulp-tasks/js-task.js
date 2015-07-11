@@ -5,7 +5,10 @@ var jshint = require('gulp-jshint');
 var livereload = require('gulp-livereload');
 
 var config = require('../configuration.json');
-var srcFiles = [config.frontDir + '/js/utility.js', config.frontDir + '/js/router.js', config.frontDir + '/js/app.js'];
+var srcFiles = [config.frontDir + '/js/tpl.js',
+				config.frontDir + '/js/utility.js',
+				config.frontDir + '/js/router.js', 
+				config.frontDir + '/js/app.js'];
 var resultFile = 'script.js';
 
 module.exports = jsTask;
