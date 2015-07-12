@@ -6,10 +6,14 @@ Already exist latest articles from next sites:
 
 * *http://alistapart.com*
 * *http://frontender.info*
+* *http://tympanus.net/codrops*
 
 Current ver: ** 0.1.0** Status: *In progress*
 
 Next version updates
+
+* Added new site : **Codrops**
+* More logic in correct date function
 
 Updates In **0.1.0**
 
@@ -28,4 +32,3 @@ Ideas for todo:
 * article read
 * local tunnel
 * send email with local tunnel
-* add page navigation

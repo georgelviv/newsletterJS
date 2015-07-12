@@ -8,6 +8,9 @@ articles.addSite(
 articles.addSite(
 	require('./alistapart-module')
 );
+articles.addSite(
+	require('./codrops-module')
+);
 
 
 articles.init();

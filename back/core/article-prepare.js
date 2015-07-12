@@ -1,3 +1,5 @@
+var correctDate = require('./correct-date-func');
+
 module.exports = articlePrepare;
 
 function articlePrepare (article) {
@@ -15,7 +17,7 @@ function articlePrepare (article) {
 		return string.replace(/\n/g, '');
 	}
 
-	function todayDate() {
+	function todayDate () {
 		var date = new Date();
 		var year = date.getFullYear();
 		var month = date.getMonth() + 1;
@@ -37,44 +39,4 @@ function articlePrepare (article) {
 		return date;
 	}
 
-	function correctDate (date) {
-		var splitDate = date.split('-');
-
-		var year;
-		var month;
-		var day;
-
-		splitDate.forEach(function (value, index) {
-			if (Number(value) <= 12) {
-				if (('' + value).length == 2) {
-					month = '' + value;
-				} else {
-					month = '0' + value;
-
-				}
-				splitDate.splice(index, 1);	
-			}
-		});
-
-		splitDate.forEach(function (value, index) {
-			if (Number(value) <= 31) {
-				if (('' + value).length == 2) {
-					day = '' + value;
-				} else {
-					day = '0' + value;
-				}
-				splitDate.splice(index, 1);
-			}
-		});
-
-		splitDate.forEach(function (value) {
-			if (('' + value).length == 4) {
-				year = '' + value;
-			} else {
-				year = '20' + value;
-			}
-		});
-
-		return [year, month, day].join('-');
-	}
 }

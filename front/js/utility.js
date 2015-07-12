@@ -45,7 +45,7 @@
 		};
 		return String(string).replace(/[&<>"'\/]/g, function (s) {
 			return entityMap[s];
-	    });
+		});
 	}
 
 	function paragraphWrapper(string) {

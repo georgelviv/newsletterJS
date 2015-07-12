@@ -3,7 +3,7 @@ var request = require('request');
 module.exports = SitePage;
 
 function SitePage (obj) {
-	if (!obj && !obj.url && !obj.transformFunc && !obj.cb) {
+	if (!obj || !obj.url || !obj.transformFunc || !obj.cb) {
 		var warningMsg = 'no passed obj with url, transformFunc and cb params';
 		console.log('Warning in SitePage: ' + warningMsg);
 		return;
