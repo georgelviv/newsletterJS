@@ -1,16 +1,17 @@
 (function utility () {
 	'use strict';
 
-	window.$_$ = window.$_$ || {};
-
-	window.$_$.utils = {
-		request: request,
-		isFunction: isFunction,
-		escapeHtml: escapeHtml,
-		paragraphWrapper: paragraphWrapper,
-		getElemntsByAttribute: getElemntsByAttribute,
-		addPrefixKey: addPrefixKey
-	};
+	window.$_$.registerModule({
+		name: 'utils',
+		api: {
+			request: request,
+			isFunction: isFunction,
+			escapeHtml: escapeHtml,
+			paragraphWrapper: paragraphWrapper,
+			getElemntsByAttribute: getElemntsByAttribute,
+			addPrefixKey: addPrefixKey
+		}
+	});
 
 	function request(config) {
 		var xhr = new XMLHttpRequest();

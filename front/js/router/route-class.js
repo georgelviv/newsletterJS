@@ -1,18 +1,20 @@
 (function route () {
 	'use strict';
 
-	window.$_$ = window.$_$ || {};
-	window.$_$.Route = Route;
-	var utils = $_$.utils;
-	var templatesProvider = new $_$.TemplatesProvider();
+	window.$_$.registerModule({
+		name: 'router',
+		api: {
+			Route: Route
+		}
+	});
 
 	function Route (configs) {
 		var privateObj = {
 			state: configs.state,
 			url: configs.url,
 			template: configs.template || null,
-			controller: utils.isFunction(configs.controller) && configs.controller || null,
-			viewNode: document.body
+			controller: ($_$.getModuleApi('utils', 'isFunction'))(configs.controller) && configs.controller || null,
+			viewNode: window.$_$.getGlobals('viewNode')
 		};
 
 		var route = this;
@@ -28,7 +30,7 @@
 
 		function initRoute () {
 			if (configs.templateUrl) {
-				privateObj.template = templatesProvider.getTemplate(configs.templateUrl);
+				privateObj.template = ($_$.getModuleApi('templates', configs.templateUrl));
 			}		
 		}
 

@@ -6,12 +6,13 @@ var sourcemaps = require('gulp-sourcemaps');
 var livereload = require('gulp-livereload');
 
 var config = require('../configuration.json');
-var srcFiles = [config.frontDir + '/js/tpl-module.js',
-				config.frontDir + '/js/utility-library.js',
-				config.frontDir + '/js/request-module.js',
-				config.frontDir + '/js/attr-render-func.js',
-				config.frontDir + '/js/route-class.js',
-				config.frontDir + '/js/router-class.js', 
+var srcFiles = [config.frontDir + '/js/app-class.js',
+				config.frontDir + '/js/tpl-module.js',
+				config.frontDir + '/js/utils/utility-library.js',
+				config.frontDir + '/js/utils/request-module.js',
+				config.frontDir + '/js/router/attr-render-func.js',
+				config.frontDir + '/js/router/route-class.js',
+				config.frontDir + '/js/router/router-class.js', 
 				config.frontDir + '/js/app-module.js'];
 var resultFile = 'script.js';
 

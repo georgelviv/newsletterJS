@@ -1,18 +1,15 @@
 (function router () {
 	'use strict';
 
-	window.$_$ = window.$_$ || {};
-	window.$_$.Router = Router;
-
-	var $_$ = window.$_$;
-	var utils = $_$.utils;
+	window.$_$.addModuleApi('router', {
+		Router: Router
+	});
 
 	function Router (configs) {
 		var routerPrivate = {
 			routes: {},
-			viewNode: configs.viewNode || document.body,
 			defaultView: configs.defaultUrl || '',
-			titleSufix: configs.titleSufix || 'newsletterJS'
+			prevUrl: location.hash
 		};
 
 		this.route = route;
@@ -23,22 +20,23 @@
 
 		function route (configs) {
 			if (configs.url) {
-				routerPrivate.routes[configs.url] = new $_$.Route(configs);
-				routerPrivate.routes[configs.url].setConfig('viewNode', routerPrivate.viewNode);
+				routerPrivate.routes[configs.url] = new ($_$.getModuleApi('router', 'Route'))(configs);
 				return routerPrivate.routes[configs.url];
 			}
 		}
 
 		function routing () {
+			var prevUrl = routerPrivate.prevUrl;
 			if (!location.hash) {
 				location.hash = '#/';
 			}
 			updateState();
 			if (routerPrivate.routes[routerPrivate.state]) {
-				routeSwitch(routerPrivate.state);
+				routeSwitch(prevUrl);
 			} else {
 				location.hash = '#/' + routerPrivate.defaultView;
-				routeSwitch(routerPrivate.defaultView);
+				updateState();
+				routeSwitch(prevUrl);
 			}	
 		}
 
@@ -46,8 +44,11 @@
 			routerPrivate.routes[routerPrivate.state].renderAttr();
 		}
 
-		function routeSwitch () {
-			routerPrivate.routes[routerPrivate.state].render(routerPrivate.params);
+		function routeSwitch (prevUrl) {
+			routerPrivate.routes[routerPrivate.state].render({
+				urlParams:routerPrivate.params,
+				fromUrl: prevUrl
+			});
 			changeTitle();
 		}
 
@@ -56,13 +57,14 @@
 			var titleNode = document.head.getElementsByTagName('title')[0];
 			var state = routerPrivate.routes[urlHash] && routerPrivate.routes[urlHash].state;
 			if (state) {
-				titleNode.innerHTML = state + ' | ' + routerPrivate.titleSufix;
+				titleNode.innerHTML = state + ' | ' + window.$_$.getGlobals('appName');
 			} else {
-				titleNode.innerHTML = routerPrivate.titleSufix;
+				titleNode.innerHTML = window.$_$.getGlobals('appName');
 			}
 		}
 
 		function updateState () {
+			routerPrivate.prevUrl = location.hash;
 			var hash = location.hash.substring(2);
 			if (routerPrivate.routes[hash]) {
 				routerPrivate.state = hash;

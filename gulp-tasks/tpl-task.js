@@ -45,10 +45,9 @@ function htmlToObj (pathFile) {
 
 		cb();
 	}, function(cb) {
-		var templatesProvider = '(function () { \'use strict\'; window.$_$ = window.$_$ || {};window.$_$.TemplatesProvider = TemplatesProvider;';
-		templatesProvider += 'function TemplatesProvider() { var templatesObj =' + JSON.stringify(tplObj) + ';';
-		templatesProvider += 'this.getTemplate = getTemplate; function getTemplate (template) { ';
-		templatesProvider += ' return templatesObj[template]; }}})("4343434");';
+		var templatesProvider = '(function tplModule () { \'use strict\'; window.$_$.registerModule({';
+		templatesProvider += 'name: \'templates\',api: ' + JSON.stringify(tplObj) + '});';
+		templatesProvider += ' })();';
 		resultFile.contents = new Buffer(templatesProvider);
 		this.push(resultFile);
 		cb();

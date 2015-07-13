@@ -14,6 +14,8 @@
 	}
 	&__article {
 		margin-bottom: 20px;
+		padding-bottom: 15px;
+		border-bottom: 1px solid $midnight-blue-color;
 	}
 	&__navigation {
 		@include clearfix;
@@ -51,9 +53,41 @@
 	&__paragraph {
 		text-indent: 20px;
 	}
+	&__aside {
+		@include clearfix;
+		padding: 15px 0;
+	}
+	&__aside__link {
+		padding: 5px 10px;
+		text-align: center;
+		text-decoration: none;
+		color: $clouds-color;
+		background-color: $midnight-blue-color;
+		transition: 0.5s background-color;
+		&:hover {
+			transition: 0.5s background-color;
+			background-color: lighten($midnight-blue-color, 10%);
+		}
+		&:nth-of-type(1n) {
+			float: left;
+		}
+		&:nth-of-type(2n) {
+			float: right;
+		}
+	}
 	&__footer {
 		&__index {
 			float: right;
+		}
+	}
+}
+
+
+.main--loading {
+	.main {
+		&__navigation__button {
+			pointer-events: none;
+   			cursor: default;
 		}
 	}
 }
