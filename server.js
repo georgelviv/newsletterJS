@@ -19,7 +19,6 @@ app.get('/articles', function (req, res) {
 
 app.get('/articles/:articleId', function (req, res) {
 	articles.getData(function (data) {
-		console.log('Loaded');
 		res.send(data);
 	}, req.params.articleId);
 });

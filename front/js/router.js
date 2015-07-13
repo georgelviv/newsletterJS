@@ -11,7 +11,8 @@
 			routes: {},
 			viewDom: configs.viewDom || document.body,
 			defaultView: configs.defaultUrl || '',
-			titleSufix: configs.titleSufix || 'newsletterJS'
+			titleSufix: configs.titleSufix || 'newsletterJS',
+			prevUrl: location.hash
 		};
 
 		this.route = route;
@@ -29,16 +30,18 @@
 		}
 
 		function routing () {
+			var prevUrl = routerPrivate.prevUrl;
+			console.log(prevUrl);
 			if (!location.hash) {
 				location.hash = '#/';
 			}
 			updateState();
 			if (routerPrivate.routes[routerPrivate.state]) {
-				routeSwitch(routerPrivate.state);
+				routeSwitch(prevUrl);
 			} else {
 				location.hash = '#/' + routerPrivate.defaultView;
 				updateState();
-				routeSwitch(routerPrivate.defaultView);
+				routeSwitch(prevUrl);
 			}	
 		}
 
@@ -46,9 +49,11 @@
 			routerPrivate.routes[routerPrivate.state].renderAttr();
 		}
 
-		function routeSwitch () {
-			console.log(routerPrivate.state);
-			routerPrivate.routes[routerPrivate.state].render(routerPrivate.params);
+		function routeSwitch (prevUrl) {
+			routerPrivate.routes[routerPrivate.state].render({
+				urlParams:routerPrivate.params,
+				fromUrl: prevUrl
+			});
 			changeTitle();
 		}
 
@@ -64,6 +69,7 @@
 		}
 
 		function updateState () {
+			routerPrivate.prevUrl = location.hash;
 			var hash = location.hash.substring(2);
 			if (routerPrivate.routes[hash]) {
 				routerPrivate.state = hash;
