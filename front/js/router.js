@@ -37,6 +37,7 @@
 				routeSwitch(routerPrivate.state);
 			} else {
 				location.hash = '#/' + routerPrivate.defaultView;
+				updateState();
 				routeSwitch(routerPrivate.defaultView);
 			}	
 		}
@@ -46,6 +47,7 @@
 		}
 
 		function routeSwitch () {
+			console.log(routerPrivate.state);
 			routerPrivate.routes[routerPrivate.state].render(routerPrivate.params);
 			changeTitle();
 		}

@@ -23,6 +23,7 @@
 						valueRender(dataItem, newNode);
 						addRender(dataItem, newNode);
 					});
+					route.parentNode.removeChild(route);
 				}
 			});				
 		}

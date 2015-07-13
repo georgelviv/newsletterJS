@@ -12,6 +12,8 @@ Current ver: ** 0.1.0** Status: *In progress*
 
 Next version updates
 
+* fixed update state when render default state
+* Removed in repaet attr unnecessary dom, when render
 * Added new site : **Codrops**
 * More logic in correct date function
 

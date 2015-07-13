@@ -8,7 +8,7 @@ var config = require('../configuration.json');
 var srcFiles = config.frontDir + '/sass/basic.scss';
 
 module.exports = cssTask;
-module.exports.srcFiles = srcFiles;
+module.exports.srcFiles = config.frontDir + '/sass/**/*.scss';
 
 function cssTask() {
 	return gulp.src(srcFiles)
