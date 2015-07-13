@@ -12,6 +12,7 @@ Current ver: ** 0.1.0** Status: *In progress*
 
 Next version updates
 
+* Added preloader
 * Added new site : **Codrops**
 * More logic in correct date function
 

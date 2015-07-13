@@ -8,7 +8,7 @@ var livereload = require('gulp-livereload');
 
 var config = require('../configuration.json');
 var srcFiles = [config.frontDir + '/tpl/**/*.tpl'];
-var resultFile = 'tpl.js';
+var resultFile = 'tpl-module.js';
 
 module.exports = tplTask;
 module.exports.srcFiles = srcFiles;
@@ -45,7 +45,7 @@ function htmlToObj (pathFile) {
 
 		cb();
 	}, function(cb) {
-		var templatesProvider = '(function () {window.$_$ = window.$_$ || {};window.$_$.TemplatesProvider = TemplatesProvider;';
+		var templatesProvider = '(function () { \'use strict\'; window.$_$ = window.$_$ || {};window.$_$.TemplatesProvider = TemplatesProvider;';
 		templatesProvider += 'function TemplatesProvider() { var templatesObj =' + JSON.stringify(tplObj) + ';';
 		templatesProvider += 'this.getTemplate = getTemplate; function getTemplate (template) { ';
 		templatesProvider += ' return templatesObj[template]; }}})("4343434");';
