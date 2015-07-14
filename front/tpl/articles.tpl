@@ -1,12 +1,15 @@
 <div class="main__navigation">
-	<a class="main__navigation__button main__navigation__button--prev" data-add-attr="href, prevPageLink" 
-		data-add-class-if-not="prevPage, main__navigation__button--disable" title="Go to previously page">
-		Prev
+	<a class="navigation__button navigation__button--prev" data-add-attr="href, prevPageLink" 
+		data-add-class-if-not="prevPage, navigation__button--disable" title="Go to previously page">
+		<i class="fa fa-angle-left"></i> Prev
 	</a>
-	<a class="main__navigation__button main__navigation__button--next" data-add-attr="href, nextPageLink" 
-		data-add-class-if-not="nextPage, main__navigation__button--disable" title="Go to next page">
-		Next
+	<a class="navigation__button navigation__button--next" data-add-attr="href, nextPageLink" 
+		data-add-class-if-not="nextPage, navigation__button--disable" title="Go to next page">
+		Next <i class="fa fa-angle-right"></i>
 	</a>
+	<div class="navigation__page">
+		Current page <span class="navigation__page__current" data-value="pageCurrent"></span>
+	</div>
 </div>
 <div class="main__content">
 	<article class="main__article" data-repeat="articles">
@@ -28,12 +31,15 @@
 	</article>
 </div>
 <div class="main__navigation">
-	<a class="main__navigation__button main__navigation__button--prev" data-add-attr="href, prevPageLink" 
-		data-add-class-if-not="prevPage, main__navigation__button--disable" title="Go to previously page">
-		Prev
+	<a class="navigation__button navigation__button--prev" data-add-attr="href, prevPageLink" 
+		data-add-class-if-not="prevPage, navigation__button--disable" title="Go to previously page">
+		<i class="fa fa-angle-left"></i> Prev
 	</a>
-	<a class="main__navigation__button main__navigation__button--next" data-add-attr="href, nextPageLink" 
-		data-add-class-if-not="nextPage, main__navigation__button--disable" title="Go to next page">
-		Next
+	<a class="navigation__button navigation__button--next" data-add-attr="href, nextPageLink" 
+		data-add-class-if-not="nextPage, navigation__button--disable" title="Go to next page">
+		Next <i class="fa fa-angle-right"></i>
 	</a>
+	<div class="navigation__page">
+		Current page <span class="navigation__page__current" data-value="pageCurrent"></span>
+	</div>
 </div>

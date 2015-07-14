@@ -21,10 +21,13 @@
 
 		if (config.preload) {
 			preloaderNode = document.createElement('div');
-			preloaderNode.className = 'main__preloader';
+			preloaderNode.className = 'main__preloader__wrapper';
+			preloaderNodeInner += '<div class="main__preloader__overlay"></div>';
+			preloaderNodeInner += '<div class="main__preloader">';
 			for (var i = 0; i < 5; i++) {
 				preloaderNodeInner += '<div class="main__preloader__react"></div>';
 			}
+			preloaderNodeInner += '</div>';
 			preloaderNode.innerHTML = preloaderNodeInner;
 			appNode.appendChild(preloaderNode);
 			appNode.className += ' main--loading';

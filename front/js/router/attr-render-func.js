@@ -48,7 +48,7 @@
 			Array.prototype.forEach.call(dataValueAttr, function (tagNode) {
 				var dataKey = tagNode.getAttribute('data-value');
 				if (data[dataKey]) {
-					tagNode.innerText = data[dataKey];
+					tagNode.innerHTML = data[dataKey];
 				}
 			});
 		}

@@ -5,9 +5,10 @@
 	margin: 0 auto;
 	padding: 20px 20px 0;
 	&__heading {
-		margin-bottom: 20px;
+		margin-bottom: 0;
 		font-size: 3rem;
 		text-align: center;
+		color: $secondary-color;
 	}
 	&__view {
 		padding: 20px 10px;
@@ -20,32 +21,6 @@
 	&__navigation {
 		@include clearfix;
 		padding: 20px 0;
-	}
-	&__navigation__button {
-		padding: 5px 15px;
-		font-size: 1.2rem;
-		text-decoration: none;
-		color: $midnight-blue-color;
-		background-color: $clouds-color;
-		transition: 0.5s background-color, 0.3s transform;
-		&:first-of-type {
-			float: left;
-		}
-		&:last-of-type {
-			float: right;
-		}
-		&:hover {
-			cursor: pointer;
-			transition: 0.5s background-color, 0.3s transform;
-			background-color: darken($clouds-color, 20%);
-		}
-		&:focus {
-			transition: 0.5s background-color, 0.3s transform;
-			transform: translateY(5px);
-		}
-		&--disable {
-			display: none;
-		}
 	}
 }
 
@@ -82,12 +57,46 @@
 	}
 }
 
+.navigation {
+	&__button {
+		@include no-select;
+		padding: 5px 15px;
+		font-size: 1.2rem;
+		text-decoration: none;
+		color: $third-color;
+		background-color: $primary-color;
+		transition: 0.5s background-color, 0.3s transform;
+		&:first-of-type {
+			float: left;
+		}
+		&:last-of-type {
+			float: right;
+		}
+		&:hover {
+			cursor: pointer;
+			transition: 0.5s background-color, 0.3s transform;
+			background-color: darken($primary-color, 20%);
+		}
+		&:focus {
+			transition: 0.5s background-color, 0.3s transform;
+			transform: translateY(5px);
+		}
+		&--disable {
+			display: none;
+		}
+	}
+	&__page {
+		width: 100%;
+		padding: 5px 15px;
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: $secondary-color;
+	}
+}
+
 
 .main--loading {
 	.main {
-		&__navigation__button {
-			pointer-events: none;
-   			cursor: default;
-		}
 	}
 }

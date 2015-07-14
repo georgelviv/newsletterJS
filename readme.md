@@ -13,6 +13,7 @@ Current ver: ** 0.1.5** Status: *In progress*
 
 Next version updates
 
+* fixed character render bug
 * Added new site: 'Tutorialzine'
 * fix absolutly link
 

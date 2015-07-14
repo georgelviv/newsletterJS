@@ -6,9 +6,19 @@
 html, body {
 	height: 100%;
 	width: 100%;
-	font-family: arial;
+	font-family: 'Roboto Condensed', sans-serif;
 }
 
 h2 {
 	font-weight: normal;
+}
+
+*::selection {
+	color: $third-color;
+	background-color: darken($primary-color, 10%);
+	
+}
+*::-moz-selection {
+	color: $third-color;
+	background-color: $primary-color; 
 }

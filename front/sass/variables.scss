@@ -1,7 +1,13 @@
 $midnight-blue-color: #2c3e50;
 $clouds-color: #ecf0f1;
+$green-color: #01C0B7;
+$dark-blue: #14315C;
 
-$preloader-color: #2c3e50;
+$primary-color: #01C0B7;
+$secondary-color: #14315C;
+$third-color: #fff;
+
+$preloader-color: #01C0B7;
 
 // Mixins
 
@@ -11,4 +17,11 @@ $preloader-color: #2c3e50;
     display: table;
     clear: both;
   }
+}
+
+@mixin no-select {
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
 }

@@ -52,6 +52,7 @@
 				return array;
 			}
 			function setPagesConfigs () {
+				self.setConfig('pageCurrent', page);
 				self.setConfig('prevPageLink', '#/articles/' + (page - 1));
 				self.setConfig('nextPageLink', '#/articles/' + (page + 1));
 				self.setConfig('prevPage', page > 1);
