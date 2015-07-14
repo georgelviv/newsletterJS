@@ -16,7 +16,7 @@ function frontenderTrasnform(data) {
 		var article = $(this);
 		var title = article.find('h2').text();
 		var description = article.find('p').text();
-		var link = site + article.find('h2 a').attr('href');
+		var link = article.find('h2 a').attr('href');
 		var date = article.find('footer time').attr('datetime');
 
 		resArr.push({

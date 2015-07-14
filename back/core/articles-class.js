@@ -80,6 +80,7 @@ function Articles() {
 
 			if (privateObj.sitesArray.every(checkIsReady)) {
 				privateObj.isDataReady = true;
+				console.log('Data loaded');
 			}
 
 			function checkIsReady (value) {

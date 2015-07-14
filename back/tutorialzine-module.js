@@ -1,28 +1,28 @@
 var cheerio = require('cheerio');
-var site = 'http://tympanus.net/codrops';
+var site = 'http://tutorialzine.com';
 
-var codropsObj = {
-	url: site + '/category/tutorials/',
-	transformFunc: codropsTrasnform,
+var tutorialzineObj = {
+	url: site + '/posts/',
+	transformFunc: tutorialzineTrasnform,
 	pages: linkToNextPage
 };
 
-module.exports = codropsObj;
+module.exports = tutorialzineObj;
 
 function linkToNextPage(data) {
 	var $ = cheerio.load(data);
-	return $('#wp_page_numbers li').last().find('a').attr('href');
+	return $('.wp-pagenavi a.nextpostslink').attr('href');
 }
 
-function codropsTrasnform(data) {
+function tutorialzineTrasnform(data) {
 	var $ = cheerio.load(data);
 	var resArr = [];
-	$('.ct-archive-container article').each(function () {
+	$('#content article.post-item').each(function () {
 		var article = $(this);
 		var title = article.find('h3 a').text();
-		var description = article.find('p.ct-feat-excerpt').text();
+		var description = article.find('p').text();
 		var link = article.find('h3 a').attr('href');
-		var date = article.find('.ct-subline time').text();
+		var date = article.find('time').attr('datetime');
 
 		resArr.push({
 			origin: site + '/',

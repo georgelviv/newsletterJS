@@ -7,10 +7,14 @@ Already exist latest articles from next sites:
 * *http://alistapart.com*
 * *http://frontender.info*
 * *http://tympanus.net/codrops*
+* *http://tutorialzine.com*
 
 Current ver: ** 0.1.5** Status: *In progress*
 
 Next version updates
+
+* Added new site: 'Tutorialzine'
+* fix absolutly link
 
 Updates In **0.1.5**
 

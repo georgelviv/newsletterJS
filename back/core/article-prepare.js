@@ -8,10 +8,17 @@ function articlePrepare (article) {
 	prepareObj.origin = article.origin || 'No origin';
 	prepareObj.title = clearNewLine(article.title) || 'No title';
 	prepareObj.description = clearNewLine(article.description) || 'No description';
-	prepareObj.link = article.link || false;
+	prepareObj.link = linkFix(article.link, article.origin) || false;
 	prepareObj.date = checkDate(article.date) || todayDate();
 
 	return prepareObj;
+
+	function linkFix(link, origin) {
+		if (!link.match(/http:\/\//) && origin !== 'No origin') {
+			return link = origin + link;
+		}
+		return link;
+	}
 
 	function clearNewLine (string) {
 		return string.replace(/\n/g, '');
@@ -26,6 +33,10 @@ function articlePrepare (article) {
 	}
 
 	function checkDate (date) {
+		if (!date) {
+			console.log('ArticlePrepare: Waring, not date on site:' + article.link);
+			return date;
+		}
 		var splitDate = date.split('-');
 		if (!(('' + splitDate[0]).length == 4)) {
 			return correctDate(date);

@@ -13,8 +13,12 @@
 		<h2 data-value="item.title"></h2>
 		<p class="article__paragraph" data-value="item.description"></p>
 		<aside class="article__aside">
-			<a class="article__aside__link" data-add-attr="href, item.linkRead" title="read article">Read more</a>
-			<a class="article__aside__link" target="_blank" data-add-attr="href, item.link" title="read article on original site">Go to original</a>
+			<a class="article__aside__link" target="_blank" data-value="item.origin" data-add-attr="href, item.origin" 
+				title="read more">
+			</a>
+			<a class="article__aside__link" target="_blank" data-add-attr="href, item.link" title="read more">
+				Read more
+			</a>
 		</aside>
 		<footer class="article__footer">
 			<time class="article__footer__datetime" data-add-attr="datetime, item.date" 

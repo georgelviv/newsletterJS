@@ -19,13 +19,6 @@
 		controller: articlesController
 	});
 
-	var articleRoute = routeProvider.route({
-		url: 'article',
-		state: 'Read Article',
-		templateUrl: 'article.tpl',
-		controller: articleController
-	});
-
 	function articlesController (self, routObj) {
 		var range = 25;
 		var page = 1;
@@ -65,14 +58,6 @@
 				self.setConfig('nextPage', articlesArray[articlesArray.length - 1].index > 1);
 			}
 		}		
-	}
-
-	function articleController (self, routObj) {
-		var goBackLink = routObj.fromUrl;
-		if (!goBackLink.match(/articles/i)) {
-			goBackLink = '/#/articles';
-		}
-		self.setConfig('fromLink', goBackLink);
 	}
 
 })();

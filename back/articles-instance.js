@@ -11,6 +11,9 @@ articles.addSite(
 articles.addSite(
 	require('./codrops-module')
 );
+articles.addSite(
+	require('./tutorialzine-module')
+);
 
 
 articles.init();
