@@ -23,6 +23,10 @@ app.get('/articles/:articleId', function (req, res) {
 	}, req.params.articleId);
 });
 
+app.use(function(req, res){
+	res.redirect('/#/404');
+});
+
 var server = app.listen(port, function listenPort() {
 	console.log('Listen on port:' + server.address().port);
 });

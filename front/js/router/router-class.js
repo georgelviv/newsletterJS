@@ -9,7 +9,8 @@
 		var routerPrivate = {
 			routes: {},
 			defaultView: configs.defaultUrl || '',
-			prevUrl: location.hash
+			prevUrl: location.hash,
+			viewNode: window.$_$.getGlobals('viewNode')
 		};
 
 		this.route = route;

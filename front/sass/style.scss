@@ -15,8 +15,7 @@
 	}
 	&__article {
 		margin-bottom: 20px;
-		padding-bottom: 15px;
-		border-bottom: 1px solid $midnight-blue-color;
+		border: 3px dashed $primary-color;
 	}
 	&__navigation {
 		@include clearfix;
@@ -25,6 +24,10 @@
 }
 
 .article {
+	&__title {
+		color: $third-color;
+		background-color: $primary-color;
+	}
 	&__paragraph {
 		text-indent: 20px;
 	}
@@ -95,6 +98,21 @@
 	}
 }
 
+.not-found {
+	position: absolute;
+  	top: 30%;
+  	left: 0;
+  	right: 0;
+  	text-align: center;
+	&__header {
+		font-size: 5rem;
+		color: $primary-color;
+	}
+	&__link {
+		font-size: 2rem;
+		color: $secondary-color;
+	}
+}
 
 .main--loading {
 	.main {

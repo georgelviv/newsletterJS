@@ -19,6 +19,13 @@
 		controller: articlesController
 	});
 
+	var error404Route = routeProvider.route({
+		url: '404',
+		state: '404 not found',
+		templateUrl: '404.tpl',
+		controller: articlesController
+	});
+
 	function articlesController (self, routObj) {
 		var range = 25;
 		var page = 1;

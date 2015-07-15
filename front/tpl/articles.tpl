@@ -13,7 +13,7 @@
 </div>
 <div class="main__content">
 	<article class="main__article" data-repeat="articles">
-		<h2 data-value="item.title"></h2>
+		<h2 class="article__title" data-value="item.title"></h2>
 		<p class="article__paragraph" data-value="item.description"></p>
 		<aside class="article__aside">
 			<a class="article__aside__link" target="_blank" data-value="item.origin" data-add-attr="href, item.origin" 
