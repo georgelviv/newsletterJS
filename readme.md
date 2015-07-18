@@ -8,30 +8,27 @@ Already exist latest articles from next sites:
 * *http://frontender.info*
 * *http://tympanus.net/codrops*
 * *http://tutorialzine.com*
+* *http://www.onextrapixel.com*
 
-Current ver: ** 0.1.5** Status: *In progress*
+Current ver: ** 0.1.7** Status: *In progress*
 
 Next version updates
 
+
+Updates In **0.1.7**
+
+* added new site http://www.onextrapixel.com
+* more complex in correct date
+* more style updates
+* fixed link slash
 * Added font handler on server
 * Added font-awesome on server
 * fixed character render bug
 * Added new site: 'Tutorialzine'
 * fix absolutly link
 
-Updates In **0.1.5**
-
-* Added App Class and wrapped all in it
-* Added preloader
-* Added prev url param to routeObj
-* fixed update state when render default state
-* Removed in repaet attr unnecessary dom, when render
-* Added new site : **Codrops**
-* More logic in correct date function
-
 Ideas for todo:
 
-* add requests broke
 * save data to Firebase
 * Send grid send marked items
 * article read

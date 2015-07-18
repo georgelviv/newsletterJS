@@ -3,16 +3,19 @@ var Articles = require('./core/articles-class');
 var articles = new Articles();
 
 articles.addSite(
-	require('./frontender-module')
+	require('./sites/frontender-module')
 );
 articles.addSite(
-	require('./alistapart-module')
+	require('./sites/alistapart-module')
 );
 articles.addSite(
-	require('./codrops-module')
+	require('./sites/codrops-module')
 );
 articles.addSite(
-	require('./tutorialzine-module')
+	require('./sites/tutorialzine-module')
+);
+articles.addSite(
+	require('./sites/onextrapixel-module')
 );
 
 

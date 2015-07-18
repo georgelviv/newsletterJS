@@ -15,7 +15,6 @@
 	}
 	&__article {
 		margin-bottom: 20px;
-		border: 3px dashed $primary-color;
 	}
 	&__navigation {
 		@include clearfix;
@@ -25,8 +24,14 @@
 
 .article {
 	&__title {
+		padding: 10px 15px;
 		color: $third-color;
 		background-color: $primary-color;
+	}
+	&__content {
+		padding: 10px 15px;
+		border: 3px dashed $primary-color;
+		border-top: none;
 	}
 	&__paragraph {
 		text-indent: 20px;
@@ -39,12 +44,12 @@
 		padding: 5px 10px;
 		text-align: center;
 		text-decoration: none;
-		color: $clouds-color;
-		background-color: $midnight-blue-color;
+		color: $third-color;
+		background-color: $secondary-color;
 		transition: 0.5s background-color;
 		&:hover {
 			transition: 0.5s background-color;
-			background-color: lighten($midnight-blue-color, 10%);
+			background-color: lighten($secondary-color, 10%);
 		}
 		&:nth-of-type(1n) {
 			float: left;
@@ -54,8 +59,22 @@
 		}
 	}
 	&__footer {
+		@include clearfix;
+		margin-top: 15px;
+		&__datetime-wrapper {
+			float: left;
+			line-height: 40px;
+			color: $secondary-color;
+		}
 		&__index {
+			height: 40px;
+			min-width: 40px;
 			float: right;
+			line-height: 40px;
+			text-align: center;
+			border-radius: 50%;
+			color: $third-color;
+			background-color: $primary-color;
 		}
 	}
 }
@@ -110,11 +129,24 @@
 	}
 	&__link {
 		font-size: 2rem;
+		text-decoration: none;
 		color: $secondary-color;
 	}
 }
 
 .main--loading {
 	.main {
+		&__article {
+			opacity: 0;
+		}
+	}
+}
+
+// Desktop
+@media all and (max-width: $bp-mobile) {
+	.not-found {
+		&__header {
+			font-size: 3.5rem;
+		}
 	}
 }

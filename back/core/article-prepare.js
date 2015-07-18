@@ -15,7 +15,12 @@ function articlePrepare (article) {
 
 	function linkFix(link, origin) {
 		if (!link.match(/http:\/\//) && origin !== 'No origin') {
-			return link = origin + link;
+			if (link[link.length - 1] == '/') {
+				return link = origin + link.slice(1);
+			} else {
+				return link = origin + link;
+			}
+			
 		}
 		return link;
 	}

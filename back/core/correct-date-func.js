@@ -22,10 +22,20 @@ function correctDate (date) {
 		var monthArr = ['january', 'february', 'march', 'april', 'may',
 			'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
+		var shortMonth = monthArr.map(function (value) {
+			return value.slice(0, 3);
+		});
+
+
 		if (!month && typeof value == 'string') {
 			var indexMonth = monthArr.indexOf(value.toLowerCase()) + 1;
+			var indexShortMonth = shortMonth.indexOf(value.toLowerCase()) + 1;
+
 			if (indexMonth) {
 				month = '0' + indexMonth;
+				splitDate.splice(index, 1);	
+			} else if (indexShortMonth) {
+				month = '0' + indexShortMonth;
 				splitDate.splice(index, 1);	
 			}
 		}
@@ -43,11 +53,12 @@ function correctDate (date) {
 	});
 
 	splitDate.forEach(function findDay (value, index) {
-		if (!day && Number(value) <= 31) {
-			if (('' + value).length == 2) {
-				day = '' + value;
+		var valueCheck = value.replace(/[a-z]/gi, '');
+		if (!day && Number(valueCheck) <= 31) {
+			if (('' + valueCheck).length == 2) {
+				day = '' + valueCheck;
 			} else {
-				day = '0' + value;
+				day = '0' + valueCheck;
 			}
 			splitDate.splice(index, 1);
 		}
