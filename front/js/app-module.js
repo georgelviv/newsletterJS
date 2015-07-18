@@ -22,8 +22,7 @@
 	var error404Route = routeProvider.route({
 		url: '404',
 		state: '404 not found',
-		templateUrl: '404.tpl',
-		controller: articlesController
+		templateUrl: '404.tpl'
 	});
 
 	function articlesController (self, routObj) {

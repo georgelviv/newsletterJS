@@ -1,3 +1,4 @@
+<h1 class="main__heading">Latest articles</h1>
 <div class="main__navigation">
 	<a class="navigation__button navigation__button--prev" data-add-attr="href, prevPageLink" 
 		data-add-class-if-not="prevPage, navigation__button--disable" title="Go to previously page">

@@ -13,6 +13,8 @@ Current ver: ** 0.1.5** Status: *In progress*
 
 Next version updates
 
+* Added font handler on server
+* Added font-awesome on server
 * fixed character render bug
 * Added new site: 'Tutorialzine'
 * fix absolutly link

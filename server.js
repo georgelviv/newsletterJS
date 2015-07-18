@@ -7,10 +7,6 @@ var port = process.argv[2] || config.port;
 
 app.use(express.static(config.buildDir + '/'));
 
-app.get('/', function (req, res) {
-	res.sendFile(config.buildDir + '/' + config.startIndex);
-});
-
 app.get('/articles', function (req, res) {
 	articles.getData(function (data) {
 		res.send(data);
@@ -24,7 +20,14 @@ app.get('/articles/:articleId', function (req, res) {
 });
 
 app.use(function(req, res){
-	res.redirect('/#/404');
+	var fontsMathces = req.path.match(/woff2|woff|ttf/i);
+	if (fontsMathces) {
+		res.header('Content-Type', 'font/' + fontsMathces[0]);
+		res.sendFile('./' + config.buildDir + req.path, { root: __dirname });
+	} else {
+		res.redirect('/#/404');
+	}
+	
 });
 
 var server = app.listen(port, function listenPort() {
