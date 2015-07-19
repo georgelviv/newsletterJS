@@ -1,0 +1,28 @@
+.not-found {
+	position: absolute;
+	top: 30%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	&__header {
+		font-size: 5rem;
+		color: $primary-color;
+	}
+	&__link {
+		font-size: 2rem;
+		text-decoration: none;
+		color: $secondary-color;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
+// Desktop
+@media all and (max-width: $bp-mobile) {
+	.not-found {
+		&__header {
+			font-size: 3.5rem;
+		}
+	}
+}

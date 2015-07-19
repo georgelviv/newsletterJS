@@ -14,6 +14,7 @@ Current ver: ** 0.1.7** Status: *In progress*
 
 Next version updates
 
+* scroll top when routing
 * added new attr: include template
 * added navigation to first and last page
 

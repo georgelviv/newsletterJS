@@ -1,5 +1,5 @@
-<div class="main__navigation">
-	<div class="main__navigation__left" data-add-class-if-not="prevPage, main__navigation__left--disable">
+<div class="navigation">
+	<div class="navigation__block navigation__block--left" data-add-class-if-not="prevPage, navigation__block--disable">
 		<a class="navigation__button" href="/#/articles/1"
 				title="Go to first page">
 			<i class="fa fa-angle-double-left"></i>
@@ -9,7 +9,7 @@
 			<i class="fa fa-angle-left"></i> Prev
 		</a>
 	</div>
-	<div class="main__navigation__right" data-add-class-if-not="nextPage, main__navigation__right--disable">
+	<div class="navigation__block navigation__block--right" data-add-class-if-not="nextPage, navigation__block--disable">
 		<a class="navigation__button" data-add-attr="href, nextPageLink" 
 			title="Go to next page">
 			Next <i class="fa fa-angle-right"></i>

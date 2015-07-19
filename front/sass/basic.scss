@@ -1,4 +1,12 @@
 @import 'variables';
 @import 'main';
 @import 'style';
-@import 'preloader'
+@import 'preloader';
+
+
+// Page
+@import 'components/not-found-page';
+
+// Components
+@import 'components/navigation-block';
+@import 'components/article-block';

@@ -38,7 +38,8 @@
 				location.hash = '#/' + routerPrivate.defaultView;
 				updateState();
 				routeSwitch(prevUrl);
-			}	
+			}
+			window.scrollTo(0, 0);
 		}
 
 		function updateView () {

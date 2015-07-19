@@ -1,0 +1,56 @@
+.navigation {
+	@include clearfix;
+	padding: 20px 0;
+	&__block {
+		width: 105px;
+		min-height: 30px;
+	}
+	&__block--left {
+		float: left;
+	}
+	&__block--right {
+		float: right;
+	}
+	&__block--disable {
+		opacity: 0;
+		.navigation {
+			&__button {
+				display: none;
+			}
+		}
+	}
+	&__button {
+		@include no-select;
+		margin-right: 5px;
+		padding: 5px 10px;
+		font-size: 1.2rem;
+		text-decoration: none;
+		color: $third-color;
+		background-color: $primary-color;
+		transition: 0.5s background-color, 0.3s transform;
+		&:first-of-type {
+			float: left;
+		}
+		&:last-of-type {
+			float: right;
+			margin-right: 0;
+		}
+		&:hover {
+			cursor: pointer;
+			transition: 0.5s background-color, 0.3s transform;
+			background-color: darken($primary-color, 20%);
+		}
+		&:focus {
+			transition: 0.5s background-color, 0.3s transform;
+			transform: translateY(5px);
+		}
+	}
+	&__page {
+		width: 100%;
+		padding: 5px 15px;
+		text-align: center;
+		font-size: 1.2rem;
+		font-weight: bold;
+		color: $secondary-color;
+	}
+}

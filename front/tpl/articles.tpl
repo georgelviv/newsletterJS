@@ -1,15 +1,17 @@
 <h1 class="main__heading">Latest articles</h1>
 
+<div data-include-template="page-settings.tpl"></div>
+
 <div data-include-template="navigation.tpl"></div>
 
 <div class="main__content">
-	<article class="main__article" data-repeat="articles">
+	<article class="article" data-repeat="articles">
 		<h2 class="article__title" data-value="item.title"></h2>
 		<div class="article__content">
 			<p class="article__paragraph" data-value="item.description"></p>
 			<aside class="article__aside">
 				<a class="article__aside__link" target="_blank" data-value="item.origin" data-add-attr="href, item.origin" 
-					title="read more">
+					title="go to origin site">
 				</a>
 				<a class="article__aside__link" target="_blank" data-add-attr="href, item.link" title="read more">
 					Read more
