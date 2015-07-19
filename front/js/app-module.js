@@ -26,14 +26,14 @@
 	});
 
 	function articlesController (self, routObj) {
-		var range = 25;
+		var RANGE = 25;
 		var page = 1;
 
 		if (routObj.urlParams) {
 			page = Number(routObj.urlParams);
 		}
 
-		($_$.getModuleApi('utils', 'getRequest'))('/articles/' + (range * page + 1 - range) + '-' + (range * page), lastCb);
+		($_$.getModuleApi('utils', 'getRequest'))('/articles/' + (RANGE * page + 1 - RANGE) + '-' + (RANGE * page), lastCb);
 		
 		function lastCb(data) {
 			var dataParse = JSON.parse(data);
@@ -63,6 +63,7 @@
 				self.setConfig('nextPageLink', '#/articles/' + (page + 1));
 				self.setConfig('prevPage', page > 1);
 				self.setConfig('nextPage', articlesArray[articlesArray.length - 1].index > 1);
+				self.setConfig('lastPageLink', '#/articles/' + (Math.ceil(articlesArray[0].index / RANGE) + (page - 1)));
 			}
 		}		
 	}

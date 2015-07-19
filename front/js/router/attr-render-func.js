@@ -8,6 +8,7 @@
 	function renderAttr (data, viewNode) {
 		var getElemntsByAttribute = $_$.getModuleApi('utils', 'getElemntsByAttribute');
 
+		includeTemplate(viewNode);
 		addRender(data, viewNode);
 		valueRender(data, viewNode);
 		addClassIfNotRender(data, viewNode);
@@ -64,6 +65,18 @@
 				}
 			});
 		}
+
+		function includeTemplate (Node) {
+			var addClassIfNotAttr = getElemntsByAttribute('data-include-template', Node);
+			Array.prototype.forEach.call(addClassIfNotAttr, function (tagNode) {
+				var templateName = (tagNode.getAttribute('data-include-template'));
+				var template = $_$.getModuleApi('templates', templateName);
+				if (template) {
+					tagNode.innerHTML = template;
+				}
+			});
+		}
+
 	}
 
 })();

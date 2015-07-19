@@ -19,6 +19,18 @@
 	&__navigation {
 		@include clearfix;
 		padding: 20px 0;
+		&__left {
+			float: left;
+			&--disable {
+				opacity: 0;
+			}
+		}
+		&__right {
+			float: right;
+			&--disable {
+				opacity: 0;
+			}
+		}
 	}
 }
 
@@ -82,7 +94,8 @@
 .navigation {
 	&__button {
 		@include no-select;
-		padding: 5px 15px;
+		margin-right: 5px;
+		padding: 5px 10px;
 		font-size: 1.2rem;
 		text-decoration: none;
 		color: $third-color;
@@ -102,9 +115,6 @@
 		&:focus {
 			transition: 0.5s background-color, 0.3s transform;
 			transform: translateY(5px);
-		}
-		&--disable {
-			display: none;
 		}
 	}
 	&__page {

@@ -14,6 +14,8 @@ Current ver: ** 0.1.7** Status: *In progress*
 
 Next version updates
 
+* added new attr: include template
+* added navigation to first and last page
 
 Updates In **0.1.7**
 

@@ -1,17 +1,7 @@
 <h1 class="main__heading">Latest articles</h1>
-<div class="main__navigation">
-	<a class="navigation__button navigation__button--prev" data-add-attr="href, prevPageLink" 
-		data-add-class-if-not="prevPage, navigation__button--disable" title="Go to previously page">
-		<i class="fa fa-angle-left"></i> Prev
-	</a>
-	<a class="navigation__button navigation__button--next" data-add-attr="href, nextPageLink" 
-		data-add-class-if-not="nextPage, navigation__button--disable" title="Go to next page">
-		Next <i class="fa fa-angle-right"></i>
-	</a>
-	<div class="navigation__page">
-		Current page <span class="navigation__page__current" data-value="pageCurrent"></span>
-	</div>
-</div>
+
+<div data-include-template="navigation.tpl"></div>
+
 <div class="main__content">
 	<article class="main__article" data-repeat="articles">
 		<h2 class="article__title" data-value="item.title"></h2>
@@ -36,16 +26,5 @@
 		</div>
 	</article>
 </div>
-<div class="main__navigation">
-	<a class="navigation__button navigation__button--prev" data-add-attr="href, prevPageLink" 
-		data-add-class-if-not="prevPage, navigation__button--disable" title="Go to previously page">
-		<i class="fa fa-angle-left"></i> Prev
-	</a>
-	<a class="navigation__button navigation__button--next" data-add-attr="href, nextPageLink" 
-		data-add-class-if-not="nextPage, navigation__button--disable" title="Go to next page">
-		Next <i class="fa fa-angle-right"></i>
-	</a>
-	<div class="navigation__page">
-		Current page <span class="navigation__page__current" data-value="pageCurrent"></span>
-	</div>
-</div>
+
+<div data-include-template="navigation.tpl"></div>
