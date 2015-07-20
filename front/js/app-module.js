@@ -28,12 +28,18 @@
 	function articlesController (self, routObj) {
 		var RANGE = 25;
 		var page = 1;
+		var getRequest = $_$.getModuleApi('utils', 'getRequest');
 
-		if (routObj.urlParams) {
+		document.getElementById('main').onclick = function () {
+			getRequest('/articles');
+			getRequest('/articles?range=1-25&filter=frontender');
+		};
+
+		if (routObj && routObj.urlParams) {
 			page = Number(routObj.urlParams);
 		}
 
-		($_$.getModuleApi('utils', 'getRequest'))('/articles/' + (RANGE * page + 1 - RANGE) + '-' + (RANGE * page), lastCb);
+		getRequest('/articles?range=' + (RANGE * page + 1 - RANGE) + '-' + (RANGE * page), lastCb);
 		
 		function lastCb(data) {
 			var dataParse = JSON.parse(data);

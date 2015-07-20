@@ -14,8 +14,9 @@ Current ver: ** 0.1.7** Status: *In progress*
 
 Next version updates
 
+* fixed repeat attr
 * scroll top when routing
-* added new attr: include template
+* added new attr: include template, removeTemporary
 * added navigation to first and last page
 
 Updates In **0.1.7**

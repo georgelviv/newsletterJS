@@ -25,7 +25,7 @@ function Articles() {
 		});
 	}
 
-	function getData (cb, range) {
+	function getData (cb, params) {
 		if (privateObj.isDataReady) {
 			callbackData();
 		} else {
@@ -36,8 +36,11 @@ function Articles() {
 
 		function callbackData() {
 			var sendData = privateObj.resData;
-			if (range) {
-				var rangeParams = range.split('-');
+			if (params.filter) {
+				
+			}
+			if (params.range) {
+				var rangeParams = params.range.split('-');
 				var firstParam = Number(rangeParams[0]);
 				var secondParam = Number(rangeParams[1]);
 				if (Number.isInteger(firstParam) && Number.isInteger(secondParam)) {

@@ -35,6 +35,7 @@
 		}
 
 		function render (params) {
+			templateRender();
 			if (privateObj.controller) {
 				privateObj.controller(route, params);
 			}
@@ -51,8 +52,11 @@
 			return privateObj[key];
 		}
 
-		function renderAttr () {
+		function templateRender () {
 			privateObj.viewNode.innerHTML = privateObj.template;
+		}
+
+		function renderAttr () {
 			window.$_$.renderAttr(privateObj, privateObj.viewNode);
 		}
 	} 

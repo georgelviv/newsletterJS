@@ -10,13 +10,7 @@ app.use(express.static(config.buildDir + '/'));
 app.get('/articles', function (req, res) {
 	articles.getData(function (data) {
 		res.send(data);
-	});
-});
-
-app.get('/articles/:articleId', function (req, res) {
-	articles.getData(function (data) {
-		res.send(data);
-	}, req.params.articleId);
+	}, req.query);
 });
 
 app.use(function(req, res){
