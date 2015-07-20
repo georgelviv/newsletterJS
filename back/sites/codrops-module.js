@@ -2,6 +2,7 @@ var cheerio = require('cheerio');
 var site = 'http://tympanus.net/codrops';
 
 var codropsObj = {
+	siteName: site,
 	url: site + '/category/tutorials/',
 	transformFunc: codropsTrasnform,
 	pages: linkToNextPage

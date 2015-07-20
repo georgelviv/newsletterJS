@@ -36,8 +36,16 @@ function Articles() {
 
 		function callbackData() {
 			var sendData = privateObj.resData;
+
+			var sitesArray = [];
+			privateObj.sitesArray.forEach(function (value) {
+				sitesArray.push(value.siteName);
+			});
+
 			if (params.filter) {
-				
+				sendData = sendData.filter(function (value) {
+					return params.filter == value.origin;
+				});
 			}
 			if (params.range) {
 				var rangeParams = params.range.split('-');
@@ -49,7 +57,7 @@ function Articles() {
 					sendData = sendData.slice(firstParam - 1, firstParam);
 				}
 			}
-			cb(JSON.stringify(sendData));
+			cb(JSON.stringify({articles: sendData, sites: sitesArray}));
 		}
 	}
 
@@ -58,6 +66,7 @@ function Articles() {
 		var index;
 		privateObj.sitesArray.push({
 			site: site,
+			siteName: obj.siteName,
 			isReady: false
 		});
 		index = privateObj.sitesArray.length - 1;

@@ -2,6 +2,7 @@ var cheerio = require('cheerio');
 var site = 'http://frontender.info';
 
 var frontenderObj = {
+	siteName: site,
 	url: site + '/',
 	transformFunc: frontenderTrasnform
 };

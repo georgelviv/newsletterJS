@@ -2,6 +2,7 @@ var cheerio = require('cheerio');
 var site = 'http://alistapart.com';
 
 var alistapartObj = {
+	siteName: site,
 	url: site + '/articles',
 	transformFunc: alistapartTrasnform,
 	pages: linkToNextPage

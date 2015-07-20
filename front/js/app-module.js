@@ -31,8 +31,7 @@
 		var getRequest = $_$.getModuleApi('utils', 'getRequest');
 
 		document.getElementById('main').onclick = function () {
-			getRequest('/articles');
-			getRequest('/articles?range=1-25&filter=frontender');
+			getRequest('/articles?range=1-25&filter=http://frontender.info/', lastCb);
 		};
 
 		if (routObj && routObj.urlParams) {
@@ -43,11 +42,11 @@
 		
 		function lastCb(data) {
 			var dataParse = JSON.parse(data);
-			if (!dataParse.length) { 
+			if (dataParse && !dataParse.articles.length) { 
 				return; 
 			}
 
-			var articlesArray = formatData(dataParse);
+			var articlesArray = formatData(dataParse.articles);
 
 			setPagesConfigs();
 			articlesRoute.setConfig('articles', articlesArray);

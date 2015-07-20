@@ -2,6 +2,7 @@ var cheerio = require('cheerio');
 var site = 'http://www.onextrapixel.com';
 
 var onextrapixelObj = {
+	siteName: site,
 	url: site,
 	transformFunc: onextrapixelTrasnform,
 	pages: linkToNextPage
