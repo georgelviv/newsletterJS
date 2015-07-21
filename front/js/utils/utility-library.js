@@ -9,7 +9,9 @@
 			escapeHtml: escapeHtml,
 			paragraphWrapper: paragraphWrapper,
 			getElemntsByAttribute: getElemntsByAttribute,
-			addPrefixKey: addPrefixKey
+			addPrefixKey: addPrefixKey,
+			isArray: isArray,
+			toggleClass: toggleClass
 		}
 	});
 
@@ -29,6 +31,10 @@
 
 	function isFunction (functionToCheck) {
 		return functionToCheck && {}.toString.call(functionToCheck) === '[object Function]';
+	}
+
+	function isArray (arrayToCheck) {
+		return arrayToCheck && {}.toString.call(arrayToCheck) === '[object Array]';
 	}
 
 	function escapeHtml (string) {
@@ -73,6 +79,29 @@
 			newObj[prefix + '' + key] = obj[key];
 		}
 		return newObj;
+	}
+
+	function toggleClass (node, className) {
+		if (!node || !className) {
+			return;
+		}
+
+		if (isArray(node)) {
+			Array.prototype.forEach.call(node, function (value) {
+				toogleNodeClass(value, className);
+			});
+		} else {
+			toogleNodeClass(node, className);
+		}
+
+		function toogleNodeClass(node, className) {
+			if (node.className.indexOf(className) !== -1) {
+				node.className = node.className.replace(className, '');
+				node.className = node.className.trim();
+			} else {
+				node.className += ' ' + className;
+			}
+		}
 	}
 
 })();

@@ -1,0 +1,47 @@
+.page-settings {
+	overflow: hidden;
+	height: 50px;
+	margin-top: 20px;
+	&--open {
+		.page-settings {
+			&__expand-btn {
+				i {
+					transform: rotate(179deg);
+				}
+			}
+			&__content {
+				transform: translateX(0);
+			}
+		}
+	}
+	&__expand-btn {
+		@include no-select;
+		position: absolute;
+		font-size: 2rem;
+		color: $primary-color;
+		i {
+			transition: 1s transform;
+		}
+	}
+	&__content {
+		margin-left: 50px;
+		padding: 10px 20px;
+		color: $third-color;
+		background-color: $primary-color;
+		transform: translateX(-110%);
+		transition: 0.5s transform;
+		&__heading {
+			display: inline-block;
+		}
+		&__apply-btn {
+			font-size: 1.3rem;
+			padding-right: 8px;
+			padding-left: 5px;
+			color: $third-color;
+			transition: 0.3s background-color;
+			i {
+				transform: rotate(45deg);
+			}
+		}
+	}
+}

@@ -15,10 +15,7 @@
 	}
 }
 
-.page-settings {
-	margin: 10px 0;
-	&__expand-btn {
-		font-size: 2rem;
-		color: $primary-color;
-	}
+span.hidden-text {
+	display: none
 }
+

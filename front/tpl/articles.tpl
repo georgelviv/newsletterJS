@@ -1,7 +1,5 @@
 <h1 class="main__heading">Latest articles</h1>
 
-<button id="main">Here</button>
-
 <div data-include-template="page-settings.tpl"></div>
 
 <div data-include-template="navigation.tpl"></div>

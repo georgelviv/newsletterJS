@@ -32,16 +32,12 @@
 
 		var pageSettingsNode = document.getElementsByClassName('page-settings')[0];
 		var expandBtnNode = document.getElementsByClassName('page-settings__expand-btn')[0];
+		var contentBtns = document.getElementsByClassName('page-settings__content')[0].getElementsByTagName('button');
 
 		expandBtnNode.addEventListener('click', toggleOpenPageSettings, false);
 
 		function toggleOpenPageSettings () {
-			if (pageSettingsNode.className.indexOf('page-settings--open') !== -1) {
-				pageSettingsNode.className.replace('page-settings--open', '');
-				pageSettingsNode.className = pageSettingsNode.className.trim();
-			} else {
-				pageSettingsNode.className += ' page-settings--open';
-			}
+			($_$.getModuleApi('utils', 'toggleClass'))(pageSettingsNode, 'page-settings--open');
 		}
 
 		if (routObj && routObj.urlParams) {
