@@ -78,15 +78,17 @@
 			var addClassIfNotAttr = getElemntsByAttribute('data-include-template', Node);
 			Array.prototype.forEach.call(addClassIfNotAttr, function (tagNode) {
 				var templateName = tagNode.getAttribute('data-include-template');
+				var needRender = !tagNode.getAttribute('data-template-is-render');
 				var template = $_$.getModuleApi('templates', templateName);
-				if (template) {
+
+				if (template && needRender) {
 					tagNode.innerHTML = template;
+					tagNode.setAttribute('data-template-is-render', true);
 				}
 			});
 		}
 
 		function removeTemporary (Node) {
-			console.log('remove');
 			var isTemporary = getElemntsByAttribute('data-is-temporary', Node);
 			Array.prototype.forEach.call(isTemporary, function (tagNode) {
 				var needRemove = tagNode.getAttribute('data-is-temporary');

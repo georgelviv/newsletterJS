@@ -14,6 +14,7 @@ Current ver: ** 0.1.7** Status: *In progress*
 
 Next version updates
 
+* fixed attr include template
 * added filter to api
 * fixed repeat attr
 * scroll top when routing

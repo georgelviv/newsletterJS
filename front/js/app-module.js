@@ -30,9 +30,22 @@
 		var page = 1;
 		var getRequest = $_$.getModuleApi('utils', 'getRequest');
 
-		document.getElementById('main').onclick = function () {
-			getRequest('/articles?range=1-25&filter=http://frontender.info/', lastCb);
-		};
+		var pageSettingsNode = document.getElementsByClassName('page-settings')[0];
+		var expandBtnNode = document.getElementsByClassName('page-settings__expand-btn')[0];
+
+		expandBtnNode.addEventListener('click', toggleOpenPageSettings, false);
+
+		console.log(expandBtnNode);
+
+		function toggleOpenPageSettings () {
+			console.log(1);
+			if (pageSettingsNode.className.indexOf('page-settings--open') !== -1) {
+				pageSettingsNode.className.replace('page-settings--open', '');
+				pageSettingsNode.className = pageSettingsNode.className.trim();
+			} else {
+				pageSettingsNode.className += ' page-settings--open';
+			}
+		}
 
 		if (routObj && routObj.urlParams) {
 			page = Number(routObj.urlParams);

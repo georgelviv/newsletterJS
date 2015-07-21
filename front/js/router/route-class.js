@@ -37,7 +37,10 @@
 		function render (params) {
 			templateRender();
 			if (privateObj.controller) {
-				privateObj.controller(route, params);
+				setTimeout(function () {
+					privateObj.controller(route, params);
+				}, 1000);
+				
 			}
 			renderAttr();
 		}
