@@ -39,7 +39,7 @@
 			if (privateObj.controller) {
 				setTimeout(function () {
 					privateObj.controller(route, params);
-				}, 1000);
+				}, 0);
 				
 			}
 			renderAttr();

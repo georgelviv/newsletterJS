@@ -68,6 +68,12 @@
 				var dataKeyArray = tagNode.getAttribute('data-add-class-if-not').split(',');
 				var attrCondition = dataKeyArray[0].trim();
 				var attrClass = dataKeyArray[1].trim();
+
+				if (tagNode.className.indexOf(attrClass) !== -1) {
+					tagNode.className = tagNode.className.replace(attrClass, '');
+					tagNode.className = tagNode.className.trim();
+				}
+
 				if (attrClass && !data[attrCondition]) {
 					tagNode.className += ' ' + attrClass;
 				}

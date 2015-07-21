@@ -14,6 +14,7 @@ Current ver: ** 0.1.7** Status: *In progress*
 
 Next version updates
 
+* fixed attr add class if not
 * fixed attr include template
 * added filter to api
 * fixed repeat attr

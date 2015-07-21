@@ -35,10 +35,7 @@
 
 		expandBtnNode.addEventListener('click', toggleOpenPageSettings, false);
 
-		console.log(expandBtnNode);
-
 		function toggleOpenPageSettings () {
-			console.log(1);
 			if (pageSettingsNode.className.indexOf('page-settings--open') !== -1) {
 				pageSettingsNode.className.replace('page-settings--open', '');
 				pageSettingsNode.className = pageSettingsNode.className.trim();
