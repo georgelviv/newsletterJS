@@ -16,7 +16,7 @@ module.exports.srcFiles = srcFiles;
 function tplTask() {
 	return gulp.src(srcFiles)
 		.pipe(htmlToObj(resultFile))
-		.pipe(gulp.dest(config.frontDir + '/js'))
+		.pipe(gulp.dest(config.frontDir + '/js/tpl/'))
 		.pipe(livereload());
 }
 
@@ -41,7 +41,9 @@ function htmlToObj (pathFile) {
 		var tplName = file.history[0].split('\\');
 		tplName = tplName[tplName.length - 1];
 
-		tplObj[tplName] =  tplContent;
+		tplObj[tplName] = {
+			content:  tplContent
+		};
 
 		cb();
 	}, function(cb) {

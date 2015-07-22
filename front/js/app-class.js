@@ -35,7 +35,7 @@
 			if (typeof arguments[0] == 'string') {
 				privateObj.globalParams[arguments[0]] = arguments[1];
 			}
-			if (toString.call(arguments[0]) == '[object Object]') {
+			if (isObject(arguments[0])) {
 				for (var key in arguments[0]) {
 					privateObj.globalParams[key] = arguments[0][key];
 				}
@@ -46,15 +46,27 @@
 			return privateObj.globalParams[key];
 		}
 
-		function addModuleApi(moduleName, obj) {
+		function addModuleApi (moduleName, obj) {
 			if (!privateObj.modules[moduleName]) {
 				console.log('No module with name:' + moduleName + '.');
 				return;
 			}
-			for (var key in obj) {
-				privateObj.modules[moduleName][key] = obj[key];
+			writeNewPropObj (privateObj.modules[moduleName], obj);
+
+			function writeNewPropObj (objRead, objWrite) {
+				if (isObject(objWrite)) {
+					for (var key in objWrite) {
+						if (objRead[key]) {
+							if (isObject(objRead[key]) && isObject(objWrite[key])) {
+								writeNewPropObj(objRead[key], objWrite[key]);
+							}
+						} else {
+							objRead[key] = 	objWrite[key];
+						}
+					}
+				}
 			}
-			
+
 		}
 
 		function getModuleApi (module, api) {
@@ -66,6 +78,10 @@
 			} else {
 				console.log('There is no api:' + api + ' in module:' + module);
 			}
+		}
+
+		function isObject (obj) {
+			return toString.call(obj) == '[object Object]';
 		}
 	}
 

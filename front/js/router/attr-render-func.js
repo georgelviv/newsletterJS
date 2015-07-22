@@ -88,7 +88,7 @@
 				var template = $_$.getModuleApi('templates', templateName);
 
 				if (template && needRender) {
-					tagNode.innerHTML = template;
+					tagNode.innerHTML = template.content;
 					tagNode.setAttribute('data-template-is-render', true);
 				}
 			});

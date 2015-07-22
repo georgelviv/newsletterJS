@@ -1,17 +1,23 @@
 (function requestModule () {
 	'use strict';
 
+	var requestCacheObj = {};
+
 	window.$_$.addModuleApi('utils', {
 		getRequest: getRequest
 	});
 
 	function getRequest (url, cb) {
-		preloadWrapper({
-			url: url, 
-			method: 'GET', 
-			cb: cb,
-			preload: true
-		});
+		if (requestCacheObj[url]) {
+			cb(requestCacheObj[url]);
+		} else {
+			preloadWrapper({
+				url: url, 
+				method: 'GET', 
+				cb: cb,
+				preload: true
+			});
+		}
 	}
 
 	function preloadWrapper (config) {
@@ -43,6 +49,8 @@
 			appNode.removeChild(preloaderNode);
 			appNode.className = appNode.className.replace('main--loading', '');
 			appNode.className = appNode.className.trim();
+
+			requestCacheObj[config.url] = data;
 			if (($_$.getModuleApi('utils', 'isFunction'))(config.cb)) {
 				config.cb(data);
 			}

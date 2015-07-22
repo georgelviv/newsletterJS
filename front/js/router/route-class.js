@@ -56,7 +56,7 @@
 		}
 
 		function templateRender () {
-			privateObj.viewNode.innerHTML = privateObj.template;
+			privateObj.viewNode.innerHTML = privateObj.template.content;
 		}
 
 		function renderAttr () {

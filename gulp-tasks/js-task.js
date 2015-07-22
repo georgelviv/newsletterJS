@@ -7,7 +7,8 @@ var livereload = require('gulp-livereload');
 
 var config = require('../configuration.json');
 var srcFiles = [config.frontDir + '/js/app-class.js',
-				config.frontDir + '/js/tpl-module.js',
+				config.frontDir + '/js/tpl/tpl-module.js',
+				config.frontDir + '/js/tpl/tpl-controllers.js',
 				config.frontDir + '/js/utils/utility-library.js',
 				config.frontDir + '/js/utils/request-module.js',
 				config.frontDir + '/js/router/attr-render-func.js',
