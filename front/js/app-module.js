@@ -25,26 +25,20 @@
 		templateUrl: '404.tpl'
 	});
 
-	function articlesController (self, routObj) {
-		var RANGE = 25;
+	function articlesController (router, routObj) {
+		var range = 25;
 		var page = 1;
 		var getRequest = $_$.getModuleApi('utils', 'getRequest');
 
-		var pageSettingsNode = document.getElementsByClassName('page-settings')[0];
-		var expandBtnNode = document.getElementsByClassName('page-settings__expand-btn')[0];
-		var contentBtns = document.getElementsByClassName('page-settings__content')[0].getElementsByTagName('button');
-
-		expandBtnNode.addEventListener('click', toggleOpenPageSettings, false);
-
-		function toggleOpenPageSettings () {
-			($_$.getModuleApi('utils', 'toggleClass'))(pageSettingsNode, 'page-settings--open');
-		}
+		router.setConfig('range', range);
+		router.setConfig('page', page);
 
 		if (routObj && routObj.urlParams) {
 			page = Number(routObj.urlParams);
+			router.setConfig('page', page);
 		}
 
-		getRequest('/articles?range=' + (RANGE * page + 1 - RANGE) + '-' + (RANGE * page), lastCb);
+		getRequest('/articles?range=' + (range * page + 1 - range) + '-' + (range * page), lastCb);
 		
 		function lastCb(data) {
 			var dataParse = JSON.parse(data);
@@ -54,7 +48,6 @@
 
 			var articlesArray = formatData(dataParse.articles);
 
-			setPagesConfigs();
 			articlesRoute.setConfig('articles', articlesArray);
 			routeProvider.updateView();
 
@@ -68,14 +61,7 @@
 				});
 				return array;
 			}
-			function setPagesConfigs () {
-				self.setConfig('pageCurrent', page);
-				self.setConfig('prevPageLink', '#/articles/' + (page - 1));
-				self.setConfig('nextPageLink', '#/articles/' + (page + 1));
-				self.setConfig('prevPage', page > 1);
-				self.setConfig('nextPage', articlesArray[articlesArray.length - 1].index > 1);
-				self.setConfig('lastPageLink', '#/articles/' + (Math.ceil(articlesArray[0].index / RANGE) + (page - 1)));
-			}
+			
 		}		
 	}
 

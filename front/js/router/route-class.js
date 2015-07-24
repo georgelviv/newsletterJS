@@ -60,7 +60,7 @@
 		}
 
 		function renderAttr () {
-			window.$_$.renderAttr(privateObj, privateObj.viewNode);
+			($_$.getModuleApi('renderAttribute', 'renderAttr'))(route, privateObj.viewNode);
 		}
 	} 
 

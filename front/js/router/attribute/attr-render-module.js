@@ -1,25 +1,26 @@
 (function attrRender () {
 	'use strict';
 
-	window.$_$ = window.$_$ || {};
-	window.$_$.renderAttr = renderAttr;
-	var utils = $_$.utils;
+	window.$_$.addModuleApi('renderAttribute', {
+		renderAttr: renderAttr
+	});
 
-	function renderAttr (data, viewNode) {
+	function renderAttr (router, viewNode) {
 		var getElemntsByAttribute = $_$.getModuleApi('utils', 'getElemntsByAttribute');
+		var includeTemplate = $_$.getModuleApi('renderAttribute', 'includeTemplate');
 
 		removeTemporary(viewNode);
-		includeTemplate(viewNode);
-		addRender(data, viewNode);
-		valueRender(data, viewNode);
-		addClassIfNotRender(data, viewNode);
-		repeatRender(data, viewNode);
+		includeTemplate(router, viewNode);
+		addRender(router, viewNode);
+		valueRender(router, viewNode);
+		addClassIfNotRender(router, viewNode);
+		repeatRender(router, viewNode);
 
-		function repeatRender (data, Node) {
+		function repeatRender (router, Node) {
 			var dataRepeatAttr = getElemntsByAttribute('data-repeat', Node);
 			Array.prototype.forEach.call(dataRepeatAttr, function (tagNode) {
 				var dataKey = tagNode.getAttribute('data-repeat');
-				var dataValue = data[dataKey];
+				var dataValue = router.getConfig(dataKey);
 				
 				tagNode.style.display = '';
 
@@ -32,37 +33,43 @@
 						newNode.setAttribute('data-is-temporary', true);
 
 						tagNode.parentNode.insertBefore(newNode, tagNode);
-						valueRender(dataItem, newNode);
-						addRender(dataItem, newNode);
+						valueRender(router, newNode, dataItem);
+						addRender(router, newNode, dataItem);
 					});
 				}
 				tagNode.style.display = 'none';
 			});				
 		}
 
-		function addRender (data, Node) {
+		function addRender (router, Node, privateDate) {
 			var dataAddAttr = getElemntsByAttribute('data-add-attr', Node);
 			Array.prototype.forEach.call(dataAddAttr, function (tagNode) {
 				var dataKeyArray = tagNode.getAttribute('data-add-attr').split(',');
 				var attrName = dataKeyArray[0].trim();
 				var attrValue = dataKeyArray[1].trim();
-				if (attrValue && data[attrValue]) {
-					tagNode.setAttribute(attrName, data[attrValue]);
+				if (attrValue) {
+					if (privateDate && privateDate[attrValue]) {
+						tagNode.setAttribute(attrName, privateDate[attrValue]);
+					} else if (router.getConfig(attrValue)) {
+						tagNode.setAttribute(attrName, router.getConfig(attrValue));
+					}
 				}
 			});
 		}
 
-		function valueRender (data, Node) {
+		function valueRender (router, Node, privateDate) {
 			var dataValueAttr = getElemntsByAttribute('data-value', Node);
 			Array.prototype.forEach.call(dataValueAttr, function (tagNode) {
 				var dataKey = tagNode.getAttribute('data-value');
-				if (data[dataKey]) {
-					tagNode.innerHTML = data[dataKey];
+				if (privateDate && privateDate[dataKey]) {
+					tagNode.innerHTML = privateDate[dataKey];
+				} else if (router.getConfig(dataKey)) {
+					tagNode.innerHTML = router.getConfig(dataKey);
 				}
 			});
 		}
 
-		function addClassIfNotRender (data, Node) {
+		function addClassIfNotRender (router, Node) {
 			var addClassIfNotAttr = getElemntsByAttribute('data-add-class-if-not', Node);
 			Array.prototype.forEach.call(addClassIfNotAttr, function (tagNode) {
 				var dataKeyArray = tagNode.getAttribute('data-add-class-if-not').split(',');
@@ -74,22 +81,8 @@
 					tagNode.className = tagNode.className.trim();
 				}
 
-				if (attrClass && !data[attrCondition]) {
+				if (attrClass && !router.getConfig(attrCondition)) {
 					tagNode.className += ' ' + attrClass;
-				}
-			});
-		}
-
-		function includeTemplate (Node) {
-			var addClassIfNotAttr = getElemntsByAttribute('data-include-template', Node);
-			Array.prototype.forEach.call(addClassIfNotAttr, function (tagNode) {
-				var templateName = tagNode.getAttribute('data-include-template');
-				var needRender = !tagNode.getAttribute('data-template-is-render');
-				var template = $_$.getModuleApi('templates', templateName);
-
-				if (template && needRender) {
-					tagNode.innerHTML = template.content;
-					tagNode.setAttribute('data-template-is-render', true);
 				}
 			});
 		}
