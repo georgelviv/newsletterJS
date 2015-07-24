@@ -14,6 +14,8 @@ Current ver: ** 0.1.8** Status: *In progress*
 
 Next version updates
 
+* controller has multiply settings
+
 Updates In **0.1.8**
 
 * templates have controllers, which run every updateRender

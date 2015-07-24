@@ -17,6 +17,7 @@
 	&__expand-btn {
 		@include no-select;
 		position: absolute;
+		margin-top: 4px;
 		font-size: 2rem;
 		color: $primary-color;
 		i {

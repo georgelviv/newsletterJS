@@ -3,10 +3,16 @@
 
 	window.$_$.addModuleApi('templates', {
 		'navigation.tpl': {
-			controller: navigationController
+			controller: {
+				func: navigationController,
+				multiply: true
+			}
 		},
 		'page-settings.tpl': {
-			controller: pageSettingsController
+			controller: {
+				func: pageSettingsController,
+				multiply: false
+			}
 		}
 	});
 
