@@ -42,9 +42,21 @@
 		}
 
 		function addRender (router, Node, privateDate) {
+			addRenderSingle(Node);
+
 			var dataAddAttr = getElemntsByAttribute('data-add-attr', Node);
 			Array.prototype.forEach.call(dataAddAttr, function (tagNode) {
-				var dataKeyArray = tagNode.getAttribute('data-add-attr').split(',');
+				addRenderSingle(tagNode);
+			});
+
+			function addRenderSingle (tagNode) {
+				var attr = tagNode.getAttribute('data-add-attr');
+				
+				if (!attr) {
+					return;
+				}
+
+				var dataKeyArray = attr.split(',');
 				var attrName = dataKeyArray[0].trim();
 				var attrValue = dataKeyArray[1].trim();
 				if (attrValue) {
@@ -53,20 +65,26 @@
 					} else if (router.getConfig(attrValue)) {
 						tagNode.setAttribute(attrName, router.getConfig(attrValue));
 					}
-				}
-			});
+				}				
+			}
 		}
 
 		function valueRender (router, Node, privateDate) {
+			valueRenderSingle(Node);
+
 			var dataValueAttr = getElemntsByAttribute('data-value', Node);
 			Array.prototype.forEach.call(dataValueAttr, function (tagNode) {
+				valueRenderSingle(tagNode);
+			});
+
+			function valueRenderSingle (tagNode) {
 				var dataKey = tagNode.getAttribute('data-value');
 				if (privateDate && privateDate[dataKey]) {
 					tagNode.innerHTML = privateDate[dataKey];
 				} else if (router.getConfig(dataKey)) {
 					tagNode.innerHTML = router.getConfig(dataKey);
 				}
-			});
+			}
 		}
 
 		function addClassIfNotRender (router, Node) {

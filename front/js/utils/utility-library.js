@@ -11,7 +11,8 @@
 			getElemntsByAttribute: getElemntsByAttribute,
 			addPrefixKey: addPrefixKey,
 			isArray: isArray,
-			toggleClass: toggleClass
+			toggleClass: toggleClass,
+			isObject: isObject
 		}
 	});
 
@@ -35,6 +36,10 @@
 
 	function isArray (arrayToCheck) {
 		return arrayToCheck && {}.toString.call(arrayToCheck) === '[object Array]';
+	}
+
+	function isObject (objToCheck) {
+		return objToCheck && {}.toString.call(objToCheck) === '[object Object]';
 	}
 
 	function escapeHtml (string) {
@@ -74,9 +79,16 @@
 	}
 
 	function addPrefixKey (obj, prefix) {
+		if (!obj || !prefix) {
+			return;
+		}
 		var newObj = {};
-		for (var key in obj) {
-			newObj[prefix + '' + key] = obj[key];
+		if (isObject(obj)) {
+			for (var key in obj) {
+				newObj[prefix + '' + key] = obj[key];
+			}
+		} else {
+			newObj[prefix] = obj;
 		}
 		return newObj;
 	}

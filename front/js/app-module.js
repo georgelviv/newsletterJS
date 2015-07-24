@@ -42,13 +42,14 @@
 		
 		function lastCb(data) {
 			var dataParse = JSON.parse(data);
-			if (dataParse && !dataParse.articles.length) { 
+			if (dataParse && !dataParse.articles.length && !dataParse.sites.length) { 
 				return; 
 			}
 
 			var articlesArray = formatData(dataParse.articles);
 
 			articlesRoute.setConfig('articles', articlesArray);
+			articlesRoute.setConfig('sites', dataParse.sites);
 			routeProvider.updateView();
 
 			function formatData(array) {

@@ -27,6 +27,10 @@ a, button {
 	}
 }
 
+select {
+	font-family: 'Roboto Condensed', sans-serif;
+}
+
 *::selection {
 	color: $third-color;
 	background-color: darken($primary-color, 10%);
