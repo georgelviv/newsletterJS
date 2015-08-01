@@ -15,6 +15,7 @@ Current ver: ** 0.1.8** Status: *In progress*
 
 Next version updates
 
+* fixed some bugs
 * Added tabindex attr
 * Added filter functionality
 * Added to attr add value and add attr logic to current node

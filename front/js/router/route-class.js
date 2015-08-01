@@ -35,13 +35,10 @@
 		}
 
 		function render (params) {
-			templateRender();
 			if (privateObj.controller) {
-				setTimeout(function () {
-					privateObj.controller(route, params);
-				}, 0);
-				
+				privateObj.controller(route, params);
 			}
+			templateRender();
 			renderAttr();
 		}
 

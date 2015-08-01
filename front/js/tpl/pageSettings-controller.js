@@ -18,22 +18,38 @@
 			applyBtn: firtsByClassName('page-settings__content__apply-btn')
 		};
 
+		var isSelectedSet = false;
+
 		domEl.expandBtnNode.addEventListener('click', toggleOpenPageSettings, false);
 		domEl.applyBtn.addEventListener('click', applyBtnHandler, false);
 
 		settingsIsOpen();
 
+		function setSelectedFilter () {
+			var filter = router.getConfig('filter');
+			var getElemntsByAttributeValue = $_$.getModuleApi('utils', 'getElemntsByAttributeValue');
+			if (filter && !isSelectedSet) {
+				var options = getElemntsByAttributeValue('value', filter, domEl.filterSelect);
+				if (options) {
+					options.setAttribute('selected', 'selected');
+					isSelectedSet = true;
+				}
+			}
+		}
+
 		function toggleOpenPageSettings () {
 			($_$.getModuleApi('utils', 'toggleClass'))(domEl.pageSettingsNode, 'page-settings--open');
 			settingsIsOpen();
+			setSelectedFilter();
 		}
 
 		function settingsIsOpen () {
-			console.log(($_$.getModuleApi('utils', 'hasClass'))(domEl.pageSettingsNode, 'page-settings--open'));
 			if (($_$.getModuleApi('utils', 'hasClass'))(domEl.pageSettingsNode, 'page-settings--open')) {
-				router.setConfig('pageSettgingsIsActive', false);
+				domEl.applyBtn.removeAttribute('tabindex');
+				domEl.filterSelect.removeAttribute('tabindex');
 			} else {
-				router.setConfig('pageSettgingsIsActive', true);
+				domEl.applyBtn.setAttribute('tabindex', -1);
+				domEl.filterSelect.setAttribute('tabindex', -1);
 			}
 		}
 

@@ -24,6 +24,9 @@
 		router.setConfig('prevPage', pageData.page > 1);
 		router.setConfig('nextPage', getIndex().indexOfLast > 1);
 
+		router.setConfig('pageCurrent', pageData.page);
+
+		router.setConfig('firstPageLink', makeLinkPage());
 		router.setConfig('lastPageLink', makeLinkPage(getLastPageNum()));
 
 		function getIndex () {

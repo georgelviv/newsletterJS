@@ -1,6 +1,6 @@
 <div class="navigation">
 	<div class="navigation__block navigation__block--left" data-add-class-if-not="prevPage, navigation__block--disable">
-		<a class="navigation__button" href="/#/articles/1" data-tabindex="prevPage"
+		<a class="navigation__button" data-add-attr="href, firstPageLink" data-tabindex="prevPage"
 				title="Go to first page">
 			<i class="fa fa-angle-double-left"></i>
 		</a>

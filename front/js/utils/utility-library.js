@@ -13,7 +13,8 @@
 			isArray: isArray,
 			toggleClass: toggleClass,
 			isObject: isObject,
-			hasClass: hasClass
+			hasClass: hasClass,
+			getElemntsByAttributeValue: getElemntsByAttributeValue
 		}
 	});
 
@@ -57,13 +58,13 @@
 		});
 	}
 
-	function paragraphWrapper(string) {
+	function paragraphWrapper (string) {
 		return string.replace(/.+\n(?=.*)/g, function (s) {
 			return '</p><p class="article__paragraph">' + s ;
 		});
 	}
 
-	function getElemntsByAttribute(attribute, start) {
+	function getElemntsByAttribute (attribute, start) {
 		var startPoint = start || document;
 		if (startPoint.querySelectorAll) {
 			return startPoint.querySelectorAll('[' + attribute +']');
@@ -77,6 +78,17 @@
 			}
 			return matchingElements;
 		}
+	}
+
+	function getElemntsByAttributeValue (attribute, value, start) {
+		var startPoint = start || document;
+		var resultArr = getElemntsByAttribute(attribute, start);
+		for (var i = 0; i < resultArr.length; i++) {
+			if (resultArr[i].getAttribute(attribute) === value) {
+				return resultArr[i];
+			}
+		}
+		return false;
 	}
 
 	function addPrefixKey (obj, prefix) {
