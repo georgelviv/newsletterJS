@@ -67,23 +67,31 @@
 
 		function updateState () {
 			routerPrivate.prevUrl = location.hash;
+
 			var hash = location.hash.substring(2);
-			if (routerPrivate.routes[hash]) {
-				routerPrivate.state = hash;
-				routerPrivate.params = null;
-				return;
+			var pathArray = hash.split('/');
+			var lastPath = pathArray[pathArray.length - 1];
+			var queryArray = lastPath.split('?');
+
+			routerPrivate.state = queryArray[0];
+			routerPrivate.params = queryArray[1] && getQueryParams(queryArray[1]) || null;
+
+			return;
+
+			function getQueryParams (queryPart) {
+				var objParams = {};
+				var params = queryPart.split('&');
+				
+				params.forEach(function (value) {
+					var valueArr = value.split('=');
+					var paramKey = valueArr[0];
+					var paramValue = valueArr[1];
+					objParams[paramKey] = paramValue;
+				});
+
+				return objParams;
 			}
 
-			var hashArray = hash.split('/');
-			var hashWithoutParams = (hashArray.slice(0, -1)).join('/');
-
-			if (routerPrivate.routes[hashWithoutParams]) {
-				routerPrivate.state = hashWithoutParams;
-				routerPrivate.params = hashArray[hashArray.length - 1];
-			} else {
-				routerPrivate.state = hash;
-				routerPrivate.params = null;
-			}
 		}
 
 	}

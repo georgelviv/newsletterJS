@@ -1,6 +1,7 @@
 #  newslettersJs
 
-Grab all intereting articles in one place. Now you can navigate beetwen pages!
+Grab all intereting articles in one place. You can navigate beetwen pages.
+Also now you can filter sites articles.
 
 Already exist latest articles from next sites:
 
@@ -14,6 +15,9 @@ Current ver: ** 0.1.8** Status: *In progress*
 
 Next version updates
 
+* Added tabindex attr
+* Added filter functionality
+* Added to attr add value and add attr logic to current node
 * controller has multiply settings
 
 Updates In **0.1.8**

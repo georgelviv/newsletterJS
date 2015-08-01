@@ -15,6 +15,7 @@
 		valueRender(router, viewNode);
 		addClassIfNotRender(router, viewNode);
 		repeatRender(router, viewNode);
+		tabIndexAttr(router, viewNode);
 
 		function repeatRender (router, Node) {
 			var dataRepeatAttr = getElemntsByAttribute('data-repeat', Node);
@@ -111,6 +112,21 @@
 				var needRemove = tagNode.getAttribute('data-is-temporary');
 				if (needRemove) {
 					tagNode.parentNode.removeChild(tagNode);
+				}
+			});			
+		}
+
+		function tabIndexAttr (router, Node) {
+			var tabIndex = getElemntsByAttribute('data-tabindex', Node);
+			Array.prototype.forEach.call(tabIndex, function (tagNode) {
+				var attrValue = tagNode.getAttribute('data-tabindex');
+				var needTabindex = router.getConfig(attrValue);
+				if (needTabindex !== undefined) {
+					if (needTabindex) {
+						tagNode.setAttribute('tabindex', 0);
+					} else {
+						tagNode.setAttribute('tabindex', -1);
+					}
 				}
 			});			
 		}

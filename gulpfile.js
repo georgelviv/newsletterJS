@@ -14,5 +14,6 @@ gulp.task('vendor-task', require('./gulp-tasks/vendor-task'));
 gulp.task('js-task', require('./gulp-tasks/js-task'));
 gulp.task('css-task', require('./gulp-tasks/css-task'));
 gulp.task('tpl-task', require('./gulp-tasks/tpl-task'));
+gulp.task('tests-task', require('./gulp-tasks/tests-task'));
 
 gulp.task('watch-task', require('./gulp-tasks/watch-task'));

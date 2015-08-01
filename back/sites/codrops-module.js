@@ -1,8 +1,10 @@
 var cheerio = require('cheerio');
 var site = 'http://tympanus.net/codrops';
+var siteName = 'codrops';
 
 var codropsObj = {
-	siteName: site,
+	siteName: siteName,
+	site: site,
 	url: site + '/category/tutorials/',
 	transformFunc: codropsTrasnform,
 	pages: linkToNextPage
@@ -26,6 +28,7 @@ function codropsTrasnform(data) {
 		var date = article.find('.ct-subline time').text();
 
 		resArr.push({
+			siteName: siteName,
 			origin: site + '/',
 			title: title,
 			description: description,

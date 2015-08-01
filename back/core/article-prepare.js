@@ -6,6 +6,7 @@ function articlePrepare (article) {
 	var prepareObj = {};
 
 	prepareObj.origin = article.origin || 'No origin';
+	prepareObj.siteName = article.siteName || 'No siteName';
 	prepareObj.title = clearNewLine(article.title) || 'No title';
 	prepareObj.description = clearNewLine(article.description) || 'No description';
 	prepareObj.link = linkFix(article.link, article.origin) || false;

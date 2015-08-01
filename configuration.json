@@ -2,5 +2,6 @@
 	"port": 3000,
 	"buildDir": "build",
 	"startPoint": "index.html",
-	"frontDir": "front"
+	"frontDir": "front",
+	"tasksDir": "gulp-tasks/tests"
 }

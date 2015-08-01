@@ -1,8 +1,10 @@
 var cheerio = require('cheerio');
 var site = 'http://frontender.info';
+var siteName = 'frontender.info';
 
 var frontenderObj = {
-	siteName: site,
+	siteName: siteName,
+	site: site,
 	url: site + '/',
 	transformFunc: frontenderTrasnform
 };
@@ -22,6 +24,7 @@ function frontenderTrasnform(data) {
 
 		resArr.push({
 			origin: site + '/',
+			siteName: siteName,
 			title: title,
 			description: description,
 			link: link,

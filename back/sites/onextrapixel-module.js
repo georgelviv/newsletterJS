@@ -1,8 +1,10 @@
 var cheerio = require('cheerio');
 var site = 'http://www.onextrapixel.com';
+var siteName = 'onextrapixel.com';
 
 var onextrapixelObj = {
-	siteName: site,
+	siteName: siteName,
+	site: site,
 	url: site,
 	transformFunc: onextrapixelTrasnform,
 	pages: linkToNextPage
@@ -27,6 +29,7 @@ function onextrapixelTrasnform(data) {
 
 		resArr.push({
 			origin: site + '/',
+			siteName: siteName,
 			title: title,
 			description: description,
 			link: link,

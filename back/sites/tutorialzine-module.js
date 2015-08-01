@@ -1,8 +1,10 @@
 var cheerio = require('cheerio');
 var site = 'http://tutorialzine.com';
+var siteName = 'tutorialzine.com';
 
 var tutorialzineObj = {
-	siteName: site,
+	siteName: siteName,
+	site: site,
 	url: site + '/posts/',
 	transformFunc: tutorialzineTrasnform,
 	pages: linkToNextPage
@@ -27,6 +29,7 @@ function tutorialzineTrasnform(data) {
 
 		resArr.push({
 			origin: site + '/',
+			siteName: siteName,
 			title: title,
 			description: description,
 			link: link,

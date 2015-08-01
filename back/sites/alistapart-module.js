@@ -1,8 +1,10 @@
 var cheerio = require('cheerio');
 var site = 'http://alistapart.com';
+var siteName = 'alistapart.com';
 
 var alistapartObj = {
-	siteName: site,
+	siteName: siteName,
+	site: site,
 	url: site + '/articles',
 	transformFunc: alistapartTrasnform,
 	pages: linkToNextPage
@@ -27,6 +29,7 @@ function alistapartTrasnform(data) {
 			var date = article.find('time.pubdate').attr('datetime').split('T')[0];
 
 			resArr.push({
+				siteName: siteName,
 				origin: site + '/',
 				title: title,
 				description: description,

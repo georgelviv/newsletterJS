@@ -26,19 +26,49 @@
 	});
 
 	function articlesController (router, routObj) {
-		var range = 25;
-		var page = 1;
+		var reqParams = {
+			range: 25,
+			page: 1,
+			filter: null
+		};
+
 		var getRequest = $_$.getModuleApi('utils', 'getRequest');
 
-		router.setConfig('range', range);
-		router.setConfig('page', page);
-
 		if (routObj && routObj.urlParams) {
-			page = Number(routObj.urlParams);
-			router.setConfig('page', page);
+			if (routObj.urlParams.page) {
+				reqParams.page = Number(routObj.urlParams.page);
+			}
+			if (routObj.urlParams.filter) {
+				reqParams.filter = routObj.urlParams.filter;
+			}
 		}
 
-		getRequest('/articles?range=' + (range * page + 1 - range) + '-' + (range * page), lastCb);
+		router.setConfig('range', reqParams.range);
+		router.setConfig('page', reqParams.page);
+		router.setConfig('filter', reqParams.filter);
+
+		getRequest(setRequestLink(reqParams), lastCb);
+
+		function setRequestLink (obj) {
+			var paramsArr = [];
+			var resultLink = '/articles';
+			var requestRange = (obj.range * obj.page + 1 - obj.range) + '-' + (obj.range * obj.page);
+
+			if (requestRange) {
+				paramsArr.push('range=' + requestRange);
+			}
+
+			if (obj.filter) {
+				paramsArr.push('filter=' + obj.filter);
+			}
+
+			if (paramsArr.length) {
+				resultLink += '?';
+				resultLink += paramsArr.join('&');
+			}
+
+			return resultLink;
+		}
 		
 		function lastCb(data) {
 			var dataParse = JSON.parse(data);
@@ -47,9 +77,11 @@
 			}
 
 			var articlesArray = formatData(dataParse.articles);
+			dataParse.sites.unshift('All');
 
 			articlesRoute.setConfig('articles', articlesArray);
 			articlesRoute.setConfig('sites', dataParse.sites);
+
 			routeProvider.updateView();
 
 			function formatData(array) {

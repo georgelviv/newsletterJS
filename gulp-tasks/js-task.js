@@ -8,11 +8,12 @@ var livereload = require('gulp-livereload');
 var config = require('../configuration.json');
 var srcFiles = [config.frontDir + '/js/app-class.js',
 				config.frontDir + '/js/tpl/tpl-module.js',
-				config.frontDir + '/js/tpl/tpl-controllers.js',
+				config.frontDir + '/js/tpl/navigation-controller.js',
+				config.frontDir + '/js/tpl/pageSettings-controller.js',
 				config.frontDir + '/js/utils/utility-library.js',
 				config.frontDir + '/js/utils/request-module.js',
-				config.frontDir + '/js/router/attribute/include-templates-func.js',
-				config.frontDir + '/js/router/attribute/attr-render-module.js',
+				config.frontDir + '/js/router/attribute/includeTemplates-func.js',
+				config.frontDir + '/js/router/attribute/attrRender-module.js',
 				config.frontDir + '/js/router/route-class.js',
 				config.frontDir + '/js/router/router-class.js', 
 				config.frontDir + '/js/app-module.js'];

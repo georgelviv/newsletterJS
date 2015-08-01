@@ -12,7 +12,8 @@
 			addPrefixKey: addPrefixKey,
 			isArray: isArray,
 			toggleClass: toggleClass,
-			isObject: isObject
+			isObject: isObject,
+			hasClass: hasClass
 		}
 	});
 
@@ -113,6 +114,17 @@
 			} else {
 				node.className += ' ' + className;
 			}
+		}
+	}
+
+	function hasClass (node, className) {
+		if (!node || !className) {
+			return;
+		}
+		if (node.className.indexOf(className) !== -1) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 
