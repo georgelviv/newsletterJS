@@ -84,7 +84,7 @@
 		var startPoint = start || document;
 		var resultArr = getElemntsByAttribute(attribute, start);
 		for (var i = 0; i < resultArr.length; i++) {
-			if (resultArr[i].getAttribute(attribute) === value) {
+			if (resultArr[i].getAttribute(attribute) == value) {
 				return resultArr[i];
 			}
 		}

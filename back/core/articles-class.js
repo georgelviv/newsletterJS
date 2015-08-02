@@ -54,10 +54,10 @@ function Articles() {
 				v.indexData = sendData.length - i;
 			});
 			
-			if (params.range) {
-				var rangeParams = params.range.split('-');
-				var firstParam = Number(rangeParams[0]);
-				var secondParam = Number(rangeParams[1]);
+			if (params.qty) {
+				var qtyParams = params.qty.split('-');
+				var firstParam = Number(qtyParams[0]);
+				var secondParam = Number(qtyParams[1]);
 				if (Number.isInteger(firstParam) && Number.isInteger(secondParam)) {
 					sendData = sendData.slice(firstParam - 1, secondParam);
 				} else if (Number.isInteger(Number(firstParam))) {

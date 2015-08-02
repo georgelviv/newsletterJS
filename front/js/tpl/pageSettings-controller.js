@@ -15,6 +15,7 @@
 			pageSettingsNode: firtsByClassName('page-settings'),
 			expandBtnNode: firtsByClassName('page-settings__expand-btn'),
 			filterSelect: firtsByClassName('page-settings__select__tag--filter'),
+			qtySelect: firtsByClassName('page-settings__select__tag--qty'),
 			applyBtn: firtsByClassName('page-settings__content__apply-btn')
 		};
 
@@ -26,12 +27,23 @@
 		settingsIsOpen();
 
 		function setSelectedFilter () {
+			if (isSelectedSet) return;
+
 			var filter = router.getConfig('filter');
+			var qty = router.getConfig('qty');
 			var getElemntsByAttributeValue = $_$.getModuleApi('utils', 'getElemntsByAttributeValue');
-			if (filter && !isSelectedSet) {
-				var options = getElemntsByAttributeValue('value', filter, domEl.filterSelect);
-				if (options) {
-					options.setAttribute('selected', 'selected');
+
+			if (filter) {
+				var optionsFilter = getElemntsByAttributeValue('value', filter, domEl.filterSelect);
+				if (optionsFilter) {
+					optionsFilter.setAttribute('selected', 'selected');
+					isSelectedSet = true;
+				}
+			}
+			if (qty) {
+				var optionsQty = getElemntsByAttributeValue('value', qty, domEl.qtySelect);
+				if (optionsQty) {
+					optionsQty.setAttribute('selected', 'selected');
 					isSelectedSet = true;
 				}
 			}
@@ -44,24 +56,37 @@
 		}
 
 		function settingsIsOpen () {
+			var itemsArray = [domEl.applyBtn, domEl.filterSelect, domEl.qtySelect];
 			if (($_$.getModuleApi('utils', 'hasClass'))(domEl.pageSettingsNode, 'page-settings--open')) {
-				domEl.applyBtn.removeAttribute('tabindex');
-				domEl.filterSelect.removeAttribute('tabindex');
+				itemsArray.forEach(function (value) {
+					value.removeAttribute('tabindex');
+				}); 
 			} else {
-				domEl.applyBtn.setAttribute('tabindex', -1);
-				domEl.filterSelect.setAttribute('tabindex', -1);
+				itemsArray.forEach(function (value) {
+					value.setAttribute('tabindex', -1);
+				});
 			}
 		}
 
 		function applyBtnHandler () {
 			var filter = domEl.filterSelect.value;
-			if (filter) {
-				if (filter !== 'All') {
-					location.href = location.origin + '/#/articles?filter=' +  filter;
-				} else {
-					location.href = location.origin + '/#/articles';
-				}
+			var qty = domEl.qtySelect.value;
+			var paramsArray = [];
+			var resLink = '/#/articles';
+
+			if (filter && filter !== 'All') {
+				paramsArray.push('filter=' +  filter);
 			}
+
+			if (qty) {
+				paramsArray.push('qty=' +  qty);
+			}
+
+			if (paramsArray.length) {
+				resLink += '?' + paramsArray.join('&');
+			}
+
+			location.href = location.origin + resLink;
 		}
 
 		function firtsByClassName(className) {

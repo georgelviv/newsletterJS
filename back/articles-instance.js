@@ -17,6 +17,9 @@ articles.addSite(
 articles.addSite(
 	require('./sites/onextrapixel-module')
 );
+articles.addSite(
+	require('./sites/csstricks-module')
+);
 
 
 articles.init();

@@ -14,7 +14,7 @@
 		var articlesArray = router.getConfig('articles') || [];
 		var pageData = {
 			page: router.getConfig('page'),
-			range: router.getConfig('range'),
+			qty: router.getConfig('qty'),
 			filter: router.getConfig('filter'),
 		};
 
@@ -40,7 +40,7 @@
 		}
 
 		function getLastPageNum () {
-			return (Math.ceil(getIndex().indexOfFirst / pageData.range) + (pageData.page - 1));
+			return (Math.ceil(getIndex().indexOfFirst / pageData.qty) + (pageData.page - 1));
 		}
 
 		function makeLinkPage (page) {
@@ -55,9 +55,12 @@
 				paramsArr.push('filter=' + pageData.filter);
 			}
 
+			if (pageData.qty) {
+				paramsArr.push('qty=' + pageData.qty);
+			}
+
 			if (paramsArr.length) {
-				resultLink += '?';
-				resultLink += paramsArr.join('&');
+				resultLink += '?' + paramsArr.join('&');
 			}
 
 			return resultLink;

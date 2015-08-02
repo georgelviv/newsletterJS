@@ -27,7 +27,7 @@
 
 	function articlesController (router, routObj) {
 		var reqParams = {
-			range: 25,
+			qty: 25,
 			page: 1,
 			filter: null
 		};
@@ -38,12 +38,15 @@
 			if (routObj.urlParams.page) {
 				reqParams.page = Number(routObj.urlParams.page);
 			}
+			if (routObj.urlParams.qty) {
+				reqParams.qty = Number(routObj.urlParams.qty);
+			}
 			if (routObj.urlParams.filter) {
 				reqParams.filter = routObj.urlParams.filter;
 			}
 		}
 
-		router.setConfig('range', reqParams.range);
+		router.setConfig('qty', reqParams.qty);
 		router.setConfig('page', reqParams.page);
 		router.setConfig('filter', reqParams.filter);
 
@@ -52,10 +55,10 @@
 		function setRequestLink (obj) {
 			var paramsArr = [];
 			var resultLink = '/articles';
-			var requestRange = (obj.range * obj.page + 1 - obj.range) + '-' + (obj.range * obj.page);
+			var requestQty = (obj.qty * obj.page + 1 - obj.qty) + '-' + (obj.qty * obj.page);
 
-			if (requestRange) {
-				paramsArr.push('range=' + requestRange);
+			if (requestQty) {
+				paramsArr.push('qty=' + requestQty);
 			}
 
 			if (obj.filter) {

@@ -1,7 +1,7 @@
 #  newslettersJs
 
 Grab all intereting articles in one place. You can navigate beetwen pages.
-Also now you can filter sites articles.
+Also now you can filter between sites and change quatnity on page articles.
 
 Already exist latest articles from next sites:
 
@@ -10,11 +10,15 @@ Already exist latest articles from next sites:
 * *http://tympanus.net/codrops*
 * *http://tutorialzine.com*
 * *http://www.onextrapixel.com*
+* *https://css-tricks.com*
+
 
 Current ver: ** 0.1.8** Status: *In progress*
 
 Next version updates
 
+* Added site https://css-tricks.com
+* Added qty filter to settings.
 * fixed some bugs
 * Added tabindex attr
 * Added filter functionality
