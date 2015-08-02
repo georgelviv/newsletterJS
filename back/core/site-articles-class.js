@@ -44,7 +44,8 @@ function SiteArticles (configObj) {
 	}
 
 	function nextPage(data) {
-		var link = configObj.pages(data);
+		var link = fixAbsoluteLink(configObj.pages(data), configObj.site);
+
 		requestData({
 			url: link,
 			transformFunc: configObj.transformFunc,
@@ -61,4 +62,15 @@ function SiteArticles (configObj) {
 		return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
 	}
 
+	function fixAbsoluteLink (link, origin) {
+		if (!link.match(/https?:\/\//) && origin !== 'No origin') {
+			if (link[link.length - 1] == '/') {
+				return link = origin + link.slice(1);
+			} else {
+				return link = origin + link;
+			}
+			
+		}
+		return link;
+	}
 }

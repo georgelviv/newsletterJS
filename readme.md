@@ -11,12 +11,18 @@ Already exist latest articles from next sites:
 * *http://tutorialzine.com*
 * *http://www.onextrapixel.com*
 * *https://css-tricks.com*
+* *https://developers.google.com*
 
 
-Current ver: ** 0.1.8** Status: *In progress*
+Current ver: ** 0.1.9** Status: *In progress*
 
 Next version updates
 
+
+Updates In **0.1.9**
+
+* Added site https://developers.google.com
+* Fixed absolutly path
 * Added site https://css-tricks.com
 * Added qty filter to settings.
 * fixed some bugs
@@ -24,18 +30,6 @@ Next version updates
 * Added filter functionality
 * Added to attr add value and add attr logic to current node
 * controller has multiply settings
-
-Updates In **0.1.8**
-
-* templates have controllers, which run every updateRender
-* request provider cash requests response
-* fixed attr add class if not
-* fixed attr include template
-* added filter to api
-* fixed repeat attr
-* scroll top when routing
-* added new attr: include template, removeTemporary
-* added navigation to first and last page
 
 Ideas for todo:
 

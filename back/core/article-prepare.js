@@ -16,6 +16,9 @@ function articlePrepare (article) {
 
 	function linkFix(link, origin) {
 		if (!link.match(/https?:\/\//) && origin !== 'No origin') {
+			if (origin[origin.length - 1] == '/') {
+				origin = origin.slice(0, -1);
+			}
 			if (link[link.length - 1] == '/') {
 				return link = origin + link.slice(1);
 			} else {
