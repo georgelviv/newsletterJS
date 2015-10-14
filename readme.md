@@ -1,5 +1,4 @@
 #  newslettersJs
------------
 
 newslettersJs - example how to use request from Nodejs. 
 Take all intereting articles in one place. You can navigate beetwen pages.
