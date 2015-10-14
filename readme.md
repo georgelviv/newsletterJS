@@ -29,6 +29,7 @@ Last Updates:
 
 
 To install project:
+
      $ npm install
      $ gulp
      $ node server
